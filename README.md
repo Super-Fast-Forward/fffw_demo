@@ -1,5 +1,7 @@
 # flutter_firebase_auth_test_app
 
+Hosted at: https://flutter-firebase-auth-a9bee.web.app
+
 This is a simple webapp to test https://github.com/amlcloud/flutter-firebase-auth.
 
 To test the flutter_firebase_auth on local you should clone flutter-firebase-auth to local directory next to the folder that you cloned flutter_firebase_auth_test_app to, for instance:
