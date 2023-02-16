@@ -30,8 +30,13 @@ void showEditProfileDialog(BuildContext context, WidgetRef ref) {
                       Text(
                           FirebaseAuth.instance.currentUser!.displayName ?? ''),
                       GestureDetector(
-                          onTap: () => Clipboard.setData(ClipboardData(
-                              text: FirebaseAuth.instance.currentUser!.uid)),
+                          onTap: () {
+                            Clipboard.setData(ClipboardData(
+                                text: FirebaseAuth.instance.currentUser!.uid));
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Text('copied to clipboard'),
+                            ));
+                          },
                           child: Text(FirebaseAuth.instance.currentUser!.uid))
                       // ...ref
                       //     .watch(docSP(

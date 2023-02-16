@@ -1,7 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_firebase_auth/current_user_avatar.dart';
+import 'package:flutter_firebase_auth/user_chip.dart';
 import 'package:flutter_firebase_auth_test_app/login_screen.dart';
+import 'package:flutter_firebase_auth/user_avatar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'firebase_options.dart';
@@ -71,16 +74,48 @@ class TheAppState extends ConsumerState<TheApp> {
       );
     } else {
       return Scaffold(
-          body: ref.watch(isLoggedIn) == false
-              ? LoginScreen('login', 'test', {
-                  "loginGitHub": false,
-                  "loginGoogle": true,
-                  "loginEmail": false,
-                  "loginSSO": false,
-                  "loginAnonymous": true,
-                  "signupOption": false,
-                })
-              : Text('Logged in!'));
+          appBar: AppBar(
+            actions: [
+              CurrentUserAvatar(),
+              IconButton(
+                icon: Icon(Icons.exit_to_app),
+                onPressed: () => FirebaseAuth.instance.signOut(),
+              )
+            ],
+          ),
+          body: Row(
+            children: [
+              Expanded(
+                  child: LoginScreen('login', 'test', {
+                "loginGitHub": false,
+                "loginGoogle": true,
+                "loginEmail": false,
+                "loginSSO": false,
+                "loginAnonymous": true,
+                "signupOption": false,
+              })),
+              ref.watch(authStateChangesSP).when(
+                  loading: () => Container(),
+                  error: (e, s) => ErrorWidget(e),
+                  data: (user) => user == null
+                      ? Text('Signed out')
+                      : Column(
+                          children: [
+                            Text('signed in as: ${user.uid}'),
+                            Divider(),
+                            Text('UserChip:'),
+                            UserChip(user.displayName ?? "Unknown Dolphin",
+                                user.photoURL ?? 'Some image'),
+                            Divider(),
+                            Text('UserAvatar:'),
+                            UserAvatar(user.photoURL ?? 'Some image')
+                          ],
+                        ))
+            ],
+          ));
     }
   }
 }
+
+final StreamProvider<User?> authStateChangesSP =
+    StreamProvider<User?>((ref) => FirebaseAuth.instance.authStateChanges());
