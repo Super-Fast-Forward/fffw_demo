@@ -2,8 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_auth/current_user_avatar.dart';
+import 'package:flutter_firebase_auth/login_screen.dart';
 import 'package:flutter_firebase_auth/user_chip.dart';
-import 'package:flutter_firebase_auth_test_app/login_screen.dart';
 import 'package:flutter_firebase_auth/user_avatar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
