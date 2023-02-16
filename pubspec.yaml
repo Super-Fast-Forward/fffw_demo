@@ -19,11 +19,10 @@ dependencies:
   flutter_riverpod: ^1.0.4
   gap: ^2.0.0
   flutter_svg: ^1.1.6
-# flutter_firebase_auth:
-#   git: https://github.com/amlcloud/flutter-firebase-auth
-# dependency_overrides:
-#   flutter_firebase_auth:
-#     path: ../flutter-firebase-auth
+  flutter_firebase_auth:
+    git: https://github.com/amlcloud/flutter-firebase-auth
+
+dependency_overrides:
   flutter_firebase_auth:
     path: ../flutter-firebase-auth
 
