@@ -1,8 +1,3 @@
-import 'package:auth/current_user_avatar.dart';
-import 'package:auth/login_screen.dart';
-import 'package:auth/user_avatar.dart';
-import 'package:auth/user_chip.dart';
-import 'package:common/common.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -41,8 +36,6 @@ final isLoggedIn = StateNotifierProvider<GenericStateNotifier<bool>, bool>(
 
 final isLoading = StateNotifierProvider<GenericStateNotifier<bool>, bool>(
     (ref) => GenericStateNotifier<bool>(false));
-
-final tabs = ['Common', 'Auth', 'Providers', 'Widgets'];
 
 class TheApp extends ConsumerStatefulWidget {
   const TheApp({Key? key}) : super(key: key);

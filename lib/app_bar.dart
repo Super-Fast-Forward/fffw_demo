@@ -9,11 +9,7 @@ import 'package:providers/theme.dart';
 // import 'package:logo/logo.dart';
 
 class MyAppBar {
-  static final List<String> _tabs = [
-    'search',
-    'lists',
-    'cases',
-  ];
+  static final List<String> _tabs = ['Common', 'Auth', 'Providers', 'Widgets'];
 
   static PreferredSizeWidget getBar(BuildContext context, WidgetRef ref) {
     return AppBar(
