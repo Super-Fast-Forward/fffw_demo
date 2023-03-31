@@ -41,11 +41,13 @@ dependencies:
       path: widgets
   # flutter_firebase_framework:
   #   git: https://github.com/Super-Fast-Forward/flutter_firebase_framework.git
-# dependency_overrides:
-#   flutter_firebase_auth:
-#     path: ../flutter-firebase-auth
-
-
+dependency_overrides:
+  common:
+    path: ../flutter_firebase_framework/common
+  providers:
+    path: ../flutter_firebase_framework/providers
+  auth:
+    path: ../flutter_firebase_framework/auth
 
 
 dev_dependencies:
