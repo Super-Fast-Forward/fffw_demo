@@ -19,11 +19,34 @@ dependencies:
   flutter_riverpod: ^1.0.4
   gap: ^2.0.0
   flutter_svg: ^1.1.6
-  flutter_firebase_auth:
-    git: https://github.com/amlcloud/flutter-firebase-auth
+  common:
+    git: 
+      url: https://github.com/Super-Fast-Forward/flutter_firebase_framework.git
+      path: common
+  sandbox:
+    git: 
+      url: https://github.com/Super-Fast-Forward/flutter_firebase_framework.git
+      path: sandbox
+  providers:
+    git: 
+      url: https://github.com/Super-Fast-Forward/flutter_firebase_framework.git
+      path: providers
+  auth:
+    git: 
+      url: https://github.com/Super-Fast-Forward/flutter_firebase_framework.git
+      path: auth
+  widgets:
+    git: 
+      url: https://github.com/Super-Fast-Forward/flutter_firebase_framework.git
+      path: widgets
+  # flutter_firebase_framework:
+  #   git: https://github.com/Super-Fast-Forward/flutter_firebase_framework.git
 # dependency_overrides:
 #   flutter_firebase_auth:
 #     path: ../flutter-firebase-auth
+
+
+
 
 dev_dependencies:
   flutter_test:

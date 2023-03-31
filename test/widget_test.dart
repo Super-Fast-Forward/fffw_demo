@@ -7,11 +7,11 @@
 
 // import 'package:firebase_core/firebase_core.dart';
 // import 'package:flutter/material.dart';
-// import 'package:flutter_firebase_auth/firebase_options.dart';
+// import 'package:flutter_firebase_framework/firebase_options.dart';
 // import 'package:flutter_riverpod/flutter_riverpod.dart';
 // import 'package:flutter_test/flutter_test.dart';
 
-// import 'package:flutter_firebase_auth_test_app/main.dart';
+// import 'package:flutter_firebase_framework_test_app/main.dart';
 
 // void main() {
 //   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
