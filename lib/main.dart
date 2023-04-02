@@ -1,4 +1,4 @@
-import 'package:auth/login.dart';
+import 'package:auth/main.dart';
 import 'package:auth/providers.dart';
 import 'package:fffw_demo/navigator.dart';
 import 'package:fffw_demo/providers_page.dart';
@@ -22,7 +22,7 @@ void main() async {
   ThemeModeConfig.enableSave = true;
   ThemeModeConfig.defaultToLightTheme = true;
 
-  LoginConfig.enableGoogleAuth = true;
+  AuthConfig.enableGoogleAuth = true;
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -42,24 +42,16 @@ class MainApp extends ConsumerWidget {
         themeMode: ref.watch(themeModeSNP) ? ThemeMode.dark : ThemeMode.light,
         theme: ThemeData.light(),
         darkTheme: ThemeData.dark(),
-        // home: TheApp(),
         initialRoute: '/',
-        // routes: {
-        //   // '/': (context) => TheApp(),
-        //   '/providers': (context) => ProvidersPage(),
-        //   '/widgets': (context) => WidgetsPage(),
-        //   '/auth': (context) => AuthPage(),
-        // },
-        onGenerateRoute: generateRoutes(routes),
+        onGenerateRoute: generateRoutes({
+          '/': (context) => AboutPage(),
+          '/about': (context) => AboutPage(),
+          '/auth': (context) => AuthPage(),
+          '/providers': (context) => ProvidersPage(),
+          '/widgets': (context) => WidgetsPage(),
+        }),
       );
 }
-
-Map<String, WidgetBuilder> routes = {
-  '/': (context) => AboutPage(),
-  '/providers': (context) => ProvidersPage(),
-  '/auth': (context) => AuthPage(),
-  '/widgets': (context) => WidgetsPage(),
-};
 
 class TheApp extends ConsumerWidget {
   @override

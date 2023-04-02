@@ -8,22 +8,22 @@ class CustomNavRail extends ConsumerWidget {
 
   final Map<String, NavigationRailDestination> destinations = {
     'about': const NavigationRailDestination(
-      icon: Icon(Icons.reorder),
+      icon: Icon(Icons.info),
       // selectedIcon: Icon(Icons.favorite),
       label: Text('About'),
     ),
     'auth': const NavigationRailDestination(
-      icon: Icon(Icons.reorder),
+      icon: Icon(Icons.person),
       // selectedIcon: Icon(Icons.favorite),
       label: Text('Auth'),
     ),
     'providers': const NavigationRailDestination(
-      icon: Icon(Icons.bookmark),
+      icon: Icon(Icons.api),
       // selectedIcon: Icon(Icons.bookmark),
       label: Text('Providers'),
     ),
     'widgets': const NavigationRailDestination(
-      icon: Icon(Icons.bookmark),
+      icon: Icon(Icons.widgets),
       // selectedIcon: Icon(Icons.bookmark),
       label: Text('Widgets'),
     ),
