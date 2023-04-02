@@ -19,6 +19,8 @@ dependencies:
   flutter_riverpod: ^1.0.4
   gap: ^2.0.0
   flutter_svg: ^1.1.6
+  flutter_highlighter: ^0.1.1
+  flutter_highlight: ^0.7.0
   common:
     git: 
       url: https://github.com/Super-Fast-Forward/flutter_firebase_framework.git
@@ -43,21 +45,18 @@ dependencies:
     git: 
       url: https://github.com/Super-Fast-Forward/flutter_firebase_framework.git
       path: theme
-  flutter_highlighter: ^0.1.1
-  flutter_highlight: ^0.7.0
-  # flutter_firebase_framework:
-  #   git: https://github.com/Super-Fast-Forward/flutter_firebase_framework.git
-dependency_overrides:
-  common:
-    path: ../flutter_firebase_framework/common
-  theme:
-    path: ../flutter_firebase_framework/theme
-  providers:
-    path: ../flutter_firebase_framework/providers
-  auth:
-    path: ../flutter_firebase_framework/auth
-  widgets:
-    path: ../flutter_firebase_framework/widgets
+
+# dependency_overrides:
+#   common:
+#     path: ../flutter_firebase_framework/common
+#   theme:
+#     path: ../flutter_firebase_framework/theme
+#   providers:
+#     path: ../flutter_firebase_framework/providers
+#   auth:
+#     path: ../flutter_firebase_framework/auth
+#   widgets:
+#     path: ../flutter_firebase_framework/widgets
 
 
 
