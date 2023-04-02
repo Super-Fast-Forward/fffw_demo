@@ -42,7 +42,7 @@ class MainApp extends ConsumerWidget {
         themeMode: ref.watch(themeModeSNP) ? ThemeMode.dark : ThemeMode.light,
         theme: ThemeData.light(),
         darkTheme: ThemeData.dark(),
-        home: TheApp(),
+        // home: TheApp(),
         initialRoute: '/',
         // routes: {
         //   // '/': (context) => TheApp(),

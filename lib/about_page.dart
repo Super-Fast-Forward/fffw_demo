@@ -12,7 +12,7 @@ class AboutPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
         appBar: CustomAppBar(
-          title: Text('Providers Page'),
+          title: Text('About'),
         ),
         body: Row(
           children: [
