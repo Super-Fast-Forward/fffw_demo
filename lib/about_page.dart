@@ -7,7 +7,7 @@ import 'package:widgets/app_bar/app_bar.dart';
 
 import 'nav_rail.dart';
 
-class ProvidersPage extends ConsumerWidget {
+class AboutPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(

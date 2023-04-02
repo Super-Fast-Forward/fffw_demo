@@ -1,5 +1,5 @@
-name: flutter_firebase_auth_test_app
-description: Reusable firebase auth widgets
+name: fffw_demo
+description: Flutter Firebase Framework Demo App
 version: 0.0.1
 homepage:
 publish_to: none
@@ -39,15 +39,26 @@ dependencies:
     git: 
       url: https://github.com/Super-Fast-Forward/flutter_firebase_framework.git
       path: widgets
+  theme:
+    git: 
+      url: https://github.com/Super-Fast-Forward/flutter_firebase_framework.git
+      path: theme
+  flutter_highlighter: ^0.1.1
+  flutter_highlight: ^0.7.0
   # flutter_firebase_framework:
   #   git: https://github.com/Super-Fast-Forward/flutter_firebase_framework.git
 dependency_overrides:
   common:
     path: ../flutter_firebase_framework/common
+  theme:
+    path: ../flutter_firebase_framework/theme
   providers:
     path: ../flutter_firebase_framework/providers
   auth:
     path: ../flutter_firebase_framework/auth
+  widgets:
+    path: ../flutter_firebase_framework/widgets
+
 
 
 dev_dependencies:

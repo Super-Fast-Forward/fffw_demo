@@ -1,14 +1,28 @@
+import 'package:auth/login.dart';
+import 'package:auth/providers.dart';
+import 'package:fffw_demo/navigator.dart';
+import 'package:fffw_demo/providers_page.dart';
+import 'package:fffw_demo/widgets_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_firebase_auth_test_app/providers_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:theme/config.dart';
+import 'package:theme/theme_mode.dart';
+import 'package:widgets/routing.dart';
 
+import 'about_page.dart';
+import 'auth_page.dart';
 import 'firebase_options.dart';
 import 'generic_state_notifier.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  ThemeModeConfig.enableSave = true;
+  ThemeModeConfig.defaultToLightTheme = true;
+
+  LoginConfig.enableGoogleAuth = true;
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -23,46 +37,39 @@ class MainApp extends ConsumerWidget {
   }) : super(key: key);
 
   @override
+  Widget build(BuildContext context, WidgetRef ref) => MaterialApp(
+        title: 'FFFW Demo',
+        themeMode: ref.watch(themeModeSNP) ? ThemeMode.dark : ThemeMode.light,
+        theme: ThemeData.light(),
+        darkTheme: ThemeData.dark(),
+        home: TheApp(),
+        initialRoute: '/',
+        // routes: {
+        //   // '/': (context) => TheApp(),
+        //   '/providers': (context) => ProvidersPage(),
+        //   '/widgets': (context) => WidgetsPage(),
+        //   '/auth': (context) => AuthPage(),
+        // },
+        onGenerateRoute: generateRoutes(routes),
+      );
+}
+
+Map<String, WidgetBuilder> routes = {
+  '/': (context) => AboutPage(),
+  '/providers': (context) => ProvidersPage(),
+  '/auth': (context) => AuthPage(),
+  '/widgets': (context) => WidgetsPage(),
+};
+
+class TheApp extends ConsumerWidget {
+  @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return MaterialApp(
-      title: 'Flutter Firebase Framework Demo',
-      home: TheApp(),
-    );
-  }
-}
+    final isLoaded = ref.watch(authStateProvider);
 
-final isLoggedIn = StateNotifierProvider<GenericStateNotifier<bool>, bool>(
-    (ref) => GenericStateNotifier<bool>(false));
-
-final isLoading = StateNotifierProvider<GenericStateNotifier<bool>, bool>(
-    (ref) => GenericStateNotifier<bool>(false));
-
-class TheApp extends ConsumerStatefulWidget {
-  const TheApp({Key? key}) : super(key: key);
-  @override
-  TheAppState createState() => TheAppState();
-}
-
-class TheAppState extends ConsumerState<TheApp> {
-  //bool isLoading = false;
-  @override
-  void initState() {
-    super.initState();
-    ref.read(isLoading.notifier).value = true;
-    FirebaseAuth.instance.authStateChanges().listen((User? user) {
-      if (user == null) {
-        ref.read(isLoggedIn.notifier).value = false;
-        ref.read(isLoading.notifier).value = false;
-      } else {
-        ref.read(isLoggedIn.notifier).value = true;
-        ref.read(isLoading.notifier).value = false;
-      }
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    if (ref.watch(isLoading)) {
+    if (!isLoaded.isLoaded
+        //ref.watch(isInitiallySignedInProvider) == false
+        ) {
+      print('loading...');
       return Center(
         child: Container(
           alignment: Alignment(0.0, 0.0),
@@ -70,74 +77,25 @@ class TheAppState extends ConsumerState<TheApp> {
         ),
       );
     } else {
-      return Scaffold(
-          // appBar: AppBar(
-          //   leading: Row(children: [tabs.map((tab)=>
-          //     TextButton(
-          //       child: Text(tab),
-          //       onPressed: () => Navigator.pushNamed(context, tab.toLowerCase()),
-          //     )
-          //   )]),
-          //   actions: [
-          //     CurrentUserAvatar(),
-          //     IconButton(
-          //       icon: Icon(Icons.exit_to_app),
-          //       onPressed: () => FirebaseAuth.instance.signOut(),
-          //     )
-          //   ],
-          // ),
-          body: DefaultTabController(
-              initialIndex: 0,
-              length: 3,
-              child: Navigator(
-                onGenerateRoute: (RouteSettings settings) {
-                  // print('onGenerateRoute: ${settings}');
-                  if (settings.name == '/' || settings.name == 'providers') {
-                    return PageRouteBuilder(
-                        pageBuilder: (_, __, ___) => ProvidersPage());
-                  }
-                  //  else if (settings.name == 'cases') {
-                  //   return PageRouteBuilder(
-                  //       pageBuilder: (_, __, ___) => CasesPage());
-                  // } else if (settings.name == 'lists') {
-                  //   return PageRouteBuilder(
-                  //       pageBuilder: (_, __, ___) => ListsPage());
-                  // }
-                  else {
-                    throw 'no page to show';
-                  }
-                },
-              )));
-      // Row(
-      //   children: [
-      //     Expanded(
-      //         child: LoginScreen('login', 'test', {
-      //       "loginGitHub": false,
-      //       "loginGoogle": true,
-      //       "loginEmail": false,
-      //       "loginSSO": false,
-      //       "loginAnonymous": true,
-      //       "signupOption": false,
-      //     })),
-      //     ref.watch(authStateChangesSP).when(
-      //         loading: () => Container(),
-      //         error: (e, s) => ErrorWidget(e),
-      //         data: (user) => user == null
-      //             ? Text('Signed out')
-      //             : Column(
-      //                 children: [
-      //                   Text('signed in as: ${user.uid}'),
-      //                   Divider(),
-      //                   Text('UserChip:'),
-      //                   UserChip(user.displayName ?? "Unknown Dolphin",
-      //                       user.photoURL ?? 'Some image'),
-      //                   Divider(),
-      //                   Text('UserAvatar:'),
-      //                   UserAvatar(user.photoURL ?? 'Some image')
-      //                 ],
-      //               ))
-      //   ],
-      // )
+      print('loaded');
+      return Scaffold(body: Text('hi')
+          //   Navigator(
+          // initialRoute: '/providers',
+          // onGenerateRoute: (RouteSettings settings) {
+          //   // print('onGenerateRoute: ${settings}');
+          //   if (settings.name == '/' || settings.name == '/providers') {
+          //     return PageRouteBuilder(
+          //       pageBuilder: (_, __, ___) => ProvidersPage(),
+          //     );
+          //   } else if (settings.name == '/widgets') {
+          //     return PageRouteBuilder(pageBuilder: (_, __, ___) => WidgetsPage());
+          //   } else if (settings.name == '/auth') {
+          //     return PageRouteBuilder(pageBuilder: (_, __, ___) => AuthPage());
+          //   } else {
+          //     throw 'no page to show';
+          //   }
+          // },
+          );
     }
   }
 }
