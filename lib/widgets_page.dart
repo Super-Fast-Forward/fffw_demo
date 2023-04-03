@@ -1,4 +1,5 @@
 import 'package:fffw_demo/page_layout.dart';
+import 'package:fffw_demo/section_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_highlight/flutter_highlight.dart';
 import 'package:flutter_highlight/themes/vs.dart';
@@ -10,31 +11,34 @@ import 'nav_rail.dart';
 class WidgetsPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return PageLayout(
-      child: Column(
+    return PageLayout(title: 'Widgets', sections: [
+      SectionLayout(
         children: [
-          Text('Firestore Collections Providers',
-              style: Theme.of(context).textTheme.labelLarge),
-          HighlightView("""            
-/// Riverpod collection Stream Provider that listens to a collection
-///
-/// WARNING: Use with care as it returns all the documents in the collection
-/// whenever any document in collection changes!
-/// Only to be used on collections which size is known to be small
-///
-/// To work with large collections consider using [filteredColSP]
-final AutoDisposeStreamProviderFamily<QuerySnapshot<Map<String, dynamic>>,
-            String> colSP
-
-  """,
-              language: 'dart',
-              theme: vsTheme
-              // githubTheme
-              ,
-              padding: EdgeInsets.all(12)),
-          Text('Providers Page', style: Theme.of(context).textTheme.labelLarge),
+          Text('DocFieldText', style: Theme.of(context).textTheme.titleLarge),
+          Text(
+              'DocFieldText is a widget that displays a field from a Firestore document.'
+              'It is a wrapper around the Text widget. It is using the StreamProvider to listen'
+              ' to changes in the document.'),
+          Text('Example:', style: Theme.of(context).textTheme.titleMedium),
+          HighlightView(
+              """DocFieldText(FirebaseFirestore.instance.collection('users').doc('123'), 'name')""",
+              language: 'dart', theme: vsTheme, padding: EdgeInsets.all(12)),
         ],
       ),
-    );
+      SectionLayout(
+        children: [
+          Text('DocFieldTextEdit',
+              style: Theme.of(context).textTheme.titleLarge),
+          Text(
+              'DocFieldTextEdit is a widget that displays a field from a Firestore document.'
+              'It is a wrapper around the TextFormField widget. It is using the StreamProvider to listen'
+              ' to changes in the document.'),
+          Text('Example:', style: Theme.of(context).textTheme.titleMedium),
+          HighlightView(
+              """DocFieldTextEdit(FirebaseFirestore.instance.collection('users').doc('123'), 'name')""",
+              language: 'dart', theme: vsTheme, padding: EdgeInsets.all(12)),
+        ],
+      ),
+    ]);
   }
 }

@@ -8,19 +8,29 @@ import 'package:widgets/app_bar/app_bar.dart';
 import 'nav_rail.dart';
 
 class PageLayout extends ConsumerWidget {
-  final Widget child;
+  final List<Widget> sections;
+  final String title;
 
-  PageLayout({required this.child});
+  PageLayout({required this.sections, required this.title});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
         appBar: CustomAppBar(
-          title: Text('About'),
+          title: Text(title),
         ),
         body: Row(children: [
           CustomNavRail.getNavRail(),
-          Container(width: 500, child: child)
+          Expanded(
+              child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ConstrainedBox(
+                constraints: BoxConstraints(maxWidth: 600),
+                child: ListView.separated(
+                    itemBuilder: (context, index) => sections[index],
+                    separatorBuilder: (context, index) => Divider(),
+                    itemCount: sections.length)),
+          ))
         ]));
   }
 }
