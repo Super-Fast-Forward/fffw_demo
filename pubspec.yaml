@@ -45,6 +45,9 @@ dependencies:
     git: 
       url: https://github.com/Super-Fast-Forward/flutter_firebase_framework.git
       path: theme
+  url_launcher: ^6.1.10
+
+
 
 
 # dependency_overrides:
