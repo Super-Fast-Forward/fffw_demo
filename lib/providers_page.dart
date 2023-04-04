@@ -64,7 +64,7 @@ Widget build(BuildContext context, WidgetRef ref) {
         ])
       ]),
       SectionLayout(children: [
-        Text('Collection Stream Providers',
+        Text('Collection Stream Provider',
             style: Theme.of(context).textTheme.titleLarge),
         Text(
             'Riverpod collection Stream Provider that listens to a collection\n'
@@ -79,10 +79,11 @@ Widget build(BuildContext context, WidgetRef ref) {
         CodeLayout(""" 
 Widget build(BuildContext context, WidgetRef ref) {
   return ref.watch(colSP('test_collection')).when(
-    data: (col) => ListView.builder(
-      itemCount: col.docs.length,
-      itemBuilder: (context, index) => Text(col.docs[index].data()['text']),
-    ),
+    data: (col) => 
+        Column(
+          children: col.docs
+              .map((doc) => Text(doc.data()?['text'] ?? 'null'))
+              .toList()),
     loading: () => CircularProgressIndicator(),
     error: (err, stack) => Text(err.toString()),
   );
@@ -107,6 +108,82 @@ Widget build(BuildContext context, WidgetRef ref) {
               ),
         ])
       ]),
+      SectionLayout(children: [
+        Text('Filtered Collection Stream Provider',
+            style: Theme.of(context).textTheme.titleLarge),
+        Text(
+            'Riverpod collection Stream Provider that listens to a collection\n'
+            'WARNING: Use with care as it returns all the documents in the collection\n'
+            'whenever any document in collection changes!\n'
+            'Only to be used on collections which size is known to be small\n'
+            'To work with large collections consider using [filteredColSP] to '
+            'limit the number of documents that are fetched.\n\n'),
+        CodeLayout(
+            """final AutoDisposeStreamProviderFamily<QuerySnapshot<Map<String, dynamic>>, String> colSP"""),
+        Text('Here is an example:\n'),
+        CodeLayout(""" 
+Widget build(BuildContext context, WidgetRef ref) {
+  return ref.watch(
+    colSPfiltered2(
+      'test_collection',
+      queries: [
+        QueryParam2('text', isEqualTo: 'hello world'),
+      ]
+    )).when(
+    data: (col) => Column(
+        children: col.docs
+            .map((doc) => Text(doc.data()?['text'] ?? 'null'))
+            .toList()),
+    loading: () => CircularProgressIndicator(),
+    error: (err, stack) => Text(err.toString()),
+  );
+}
+  """),
+        Row(children: [
+          CodeLayout("""{\n"""
+              """  test_doc: {\n"""
+              """    text: 'hello world'\n"""
+              """  }\n"""
+              """  test_doc1: {\n"""
+              """    text: 'hi again'\n"""
+              """  }\n"""
+              """}"""),
+          ref
+              .watch(colSPfiltered2('test_collection', queries: [
+                QueryParam2('text', isEqualTo: 'hello world'),
+              ]))
+              .when(
+                data: (col) => Column(
+                    children: col.docs
+                        .map((doc) => Text(doc.data()?['text'] ?? 'null'))
+                        .toList()),
+                loading: () => CircularProgressIndicator(),
+                error: (err, stack) => Text(err.toString()),
+              ),
+        ])
+      ]),
     ]);
   }
+}
+
+final Map<String, Map<QueryOperator, Object>> v = {
+  'text': {QueryOperator.isEqualTo: 'hello world'}
+};
+
+final Map<String, Map<QueryOperator, Object>> v1 = {
+  'text': {QueryOperator.isEqualTo: 'hello world'},
+  'text': {QueryOperator.isEqualTo: 'hello world'}
+};
+
+enum QueryOperator {
+  isEqualTo,
+  isLessThan,
+  isLessThanOrEqualTo,
+  isGreaterThan,
+  isGreaterThanOrEqualTo,
+  arrayContains,
+  arrayContainsAny,
+  whereIn,
+  whereNotIn,
+  isNull,
 }
