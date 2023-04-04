@@ -27,6 +27,10 @@ class CustomNavRail extends ConsumerWidget {
       icon: Icon(Icons.widgets),
       label: Text('Widgets'),
     ),
+    'helpers': const NavigationRailDestination(
+      icon: Icon(Icons.code),
+      label: Text('Helpers'),
+    ),
   };
 
   CustomNavRail({Key? key}) : super(key: key);

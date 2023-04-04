@@ -16,6 +16,7 @@ import 'auth_page.dart';
 import 'data_page.dart';
 import 'firebase_options.dart';
 import 'generic_state_notifier.dart';
+import 'helpers_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -51,6 +52,7 @@ class MainApp extends ConsumerWidget {
           '/providers': (context, settings) => ProvidersPage(),
           '/data': (context, settings) => DataPage(),
           '/widgets': (context, settings) => WidgetsPage(),
+          '/helpers': (context, settings) => HelpersPage(),
         }),
       );
 }
