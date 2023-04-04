@@ -31,7 +31,7 @@ class ProvidersPage extends ConsumerWidget {
             'that is listening to it will be rebuilt.\n\n'
             'This will update the UI with the latest value of SNP.\n\n'),
         CodeLayout("""
-final SNP text = snp('Hello World!');
+final SNP<String> text = snp<String>('Hello World!');
   """),
         Text('Here is an example:\n'),
         CodeLayout("""
