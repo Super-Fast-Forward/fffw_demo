@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:providers/firestore.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:widgets/app_bar/app_bar.dart';
+import 'package:widgets/link.dart';
 
 import 'nav_rail.dart';
 
@@ -22,37 +23,15 @@ class AboutPage extends ConsumerWidget {
             'It is using Riverpod for state management and Firestore for data storage.'),
         Text('Codebase', style: Theme.of(context).textTheme.titleMedium),
         Text('The project is open source and can be found on GitHub:'),
-        InkWell(
-          onTap: () => _launchURL(
-              'https://github.com/Super-Fast-Forward/flutter_firebase_framework'),
-          child: Text(
-            'https://github.com/Super-Fast-Forward/flutter_firebase_framework',
-            style: linkStyle,
-          ),
-        ),
+        Link(
+            'https://github.com/Super-Fast-Forward/flutter_firebase_framework'),
         Text('The codebase of this demo app can be found here:'),
-        InkWell(
-            onTap: () =>
-                _launchURL('https://github.com/Super-Fast-Forward/fffw_demo'),
-            child: Text(
-              'https://github.com/Super-Fast-Forward/fffw_demo',
-              style: linkStyle,
-            )),
+        Link('https://github.com/Super-Fast-Forward/fffw_demo')
+      ]),
+      SectionLayout(children: [
+        Text('Support this project on Patreon:'),
+        Link('patreon.com/FlutterFirebaseFramework')
       ])
     ]);
   }
 }
-
-Future<void> _launchURL(String url) async {
-  // if (await canLaunchUrl(Uri.parse(url))) {
-  await launchUrl(Uri.parse(url));
-  // } else {
-  //   throw 'Could not launch $url';
-  // }
-}
-
-final linkStyle = TextStyle(
-  decoration: TextDecoration.underline,
-  color: Colors.blue,
-  fontSize: 20,
-);

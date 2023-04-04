@@ -53,11 +53,11 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-      apiKey: "AIzaSyDbg9uohR8qSHxji9Si4USA-nzuTNJCeOw",
-      authDomain: "flutter-firebase-auth-a9bee.firebaseapp.com",
-      projectId: "flutter-firebase-auth-a9bee",
-      storageBucket: "flutter-firebase-auth-a9bee.appspot.com",
-      messagingSenderId: "27012132724",
-      appId: "1:27012132724:web:a526b22df1f7405657c621",
-      measurementId: "G-3RNXSLC3P6");
+      apiKey: "AIzaSyD97XIKx1GndTJwkanOTMHQJ1_FVc-T8Pw",
+      authDomain: "fffw-web.firebaseapp.com",
+      projectId: "fffw-web",
+      storageBucket: "fffw-web.appspot.com",
+      messagingSenderId: "936383223494",
+      appId: "1:936383223494:web:b02bf6c6dbc1de2476e9c7",
+      measurementId: "G-Z2B6SDNW58");
 }

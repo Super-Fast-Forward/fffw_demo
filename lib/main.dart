@@ -44,11 +44,11 @@ class MainApp extends ConsumerWidget {
         darkTheme: ThemeData.dark(),
         initialRoute: '/',
         onGenerateRoute: generateRoutes({
-          '/': (context) => AboutPage(),
-          '/about': (context) => AboutPage(),
-          '/auth': (context) => AuthPage(),
-          '/providers': (context) => ProvidersPage(),
-          '/widgets': (context) => WidgetsPage(),
+          '/': (context, settings) => AboutPage(),
+          '/about': (context, settings) => AboutPage(),
+          '/auth': (context, settings) => AuthPage(),
+          '/providers': (context, settings) => ProvidersPage(),
+          '/widgets': (context, settings) => WidgetsPage(),
         }),
       );
 }
