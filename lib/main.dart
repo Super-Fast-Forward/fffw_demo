@@ -13,6 +13,7 @@ import 'package:widgets/routing.dart';
 
 import 'about_page.dart';
 import 'auth_page.dart';
+import 'data_page.dart';
 import 'firebase_options.dart';
 import 'generic_state_notifier.dart';
 
@@ -38,7 +39,7 @@ class MainApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) => MaterialApp(
-        title: 'FFFW Demo',
+        title: 'Flutter Firebase Framework',
         themeMode: ref.watch(themeModeSNP) ? ThemeMode.dark : ThemeMode.light,
         theme: ThemeData.light(),
         darkTheme: ThemeData.dark(),
@@ -48,6 +49,7 @@ class MainApp extends ConsumerWidget {
           '/about': (context, settings) => AboutPage(),
           '/auth': (context, settings) => AuthPage(),
           '/providers': (context, settings) => ProvidersPage(),
+          '/data': (context, settings) => DataPage(),
           '/widgets': (context, settings) => WidgetsPage(),
         }),
       );

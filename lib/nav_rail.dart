@@ -9,22 +9,22 @@ class CustomNavRail extends ConsumerWidget {
   final Map<String, NavigationRailDestination> destinations = {
     'about': const NavigationRailDestination(
       icon: Icon(Icons.info),
-      // selectedIcon: Icon(Icons.favorite),
       label: Text('About'),
     ),
     'auth': const NavigationRailDestination(
       icon: Icon(Icons.person),
-      // selectedIcon: Icon(Icons.favorite),
       label: Text('Auth'),
     ),
     'providers': const NavigationRailDestination(
       icon: Icon(Icons.api),
-      // selectedIcon: Icon(Icons.bookmark),
       label: Text('Providers'),
+    ),
+    'data': const NavigationRailDestination(
+      icon: Icon(Icons.storage),
+      label: Text('Data'),
     ),
     'widgets': const NavigationRailDestination(
       icon: Icon(Icons.widgets),
-      // selectedIcon: Icon(Icons.bookmark),
       label: Text('Widgets'),
     ),
   };
@@ -34,9 +34,8 @@ class CustomNavRail extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return NavRail(
-        key: ValueKey('navRail1'),
         onDestinationSelected: (int index) {
-          print('index: $index, name: ${destinations.keys.elementAt(index)}');
+          //print('index: $index, name: ${destinations.keys.elementAt(index)}');
           Navigator.of(context)
               .pushNamed('/' + destinations.keys.elementAt(index));
         },

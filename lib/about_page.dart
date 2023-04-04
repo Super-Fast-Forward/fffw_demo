@@ -31,27 +31,28 @@ class AboutPage extends ConsumerWidget {
       ]),
       SectionLayout(children: [
         Text('Usage', style: Theme.of(context).textTheme.titleMedium),
-        Text(
+        Text('Currently the framework is not yet published on pub.dev.'
             'To use the project simply include it as a dependency in your pubspec.yaml:'),
         Text('Here is an example:\n'),
         HighlightView(
-            "dependencies:"
+            "dependencies:\n"
             //"  fffw: ^0.0.1",
-            " common:"
-            "   git: "
-            "     url: https://github.com/Super-Fast-Forward/flutter_firebase_framework.git"
-            "     path: common"
-            " sandbox:"
-            "   git: "
-            "     url: https://github.com/Super-Fast-Forward/flutter_firebase_framework.git"
-            "     path: sandbox"
-            " providers:"
-            "   git: "
-            "     url: https://github.com/Super-Fast-Forward/flutter_firebase_framework.git"
-            "     path: providers"
-            " auth:"
-            "   git: "
-            "     url: https://github.com/Super-Fast-Forward/flutter_firebase_framework.git"
+            "  common:\n"
+            "    git:\n"
+            "      url: https://github.com/Super-Fast-Forward/flutter_firebase_framework.git\n"
+            "      path: common\n"
+            "  sandbox:\n"
+            "    git:\n"
+            "      url: https://github.com/Super-Fast-Forward/flutter_firebase_framework.git\n"
+            "      path: sandbox\n"
+            " providers:\n"
+            "    git:\n"
+            "      url: https://github.com/Super-Fast-Forward/flutter_firebase_framework.git\n"
+            "      path: providers\n"
+            " auth:\n"
+            "    git:\n"
+            "      url: https://github.com/Super-Fast-Forward/flutter_firebase_framework.git\n"
+            "      path: auth\n"
 
 // dependencies:
 // common:
@@ -76,7 +77,7 @@ class AboutPage extends ConsumerWidget {
 //       path: widgets
 
             ,
-            language: 'dart',
+            language: 'yaml',
             theme: vsTheme,
             padding: EdgeInsets.all(12))
       ]),

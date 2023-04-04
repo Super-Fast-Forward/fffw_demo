@@ -1,189 +1,71 @@
 import 'package:fffw_demo/page_layout.dart';
 import 'package:fffw_demo/section_layout.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_highlight/flutter_highlight.dart';
-import 'package:flutter_highlight/themes/vs.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:providers/firestore.dart';
-import 'package:widgets/app_bar/app_bar.dart';
+import 'package:providers/generic.dart';
 import 'package:widgets/link.dart';
 
 import 'code_layout.dart';
-import 'nav_rail.dart';
 
 class ProvidersPage extends ConsumerWidget {
+  final SNP<String> text = snp<String>('Hello World!');
+
+  ProvidersPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return PageLayout(title: 'Providers', sections: [
       SectionLayout(children: [
-        Text('To better understand how to use providers,'
-            'please read the Riverpod documentation first.\n'
-            'The following providers are created to simplify the usage of Firestore '
-            'and use the best practices of Riverpod:\n'),
+        Text('Providers is a handy mechanism for state management.\n'
+            'This framework is based solely on providers from Riverpod:\n'),
         Link('https://riverpod.dev/'),
-        Text(
-            'If you are not familiar with concepts of Collections and Documents,'
-            'please read the Firestore documentation first:\n'),
-        Link('https://firebase.google.com/docs/firestore'),
-        Text('Firestore is great for creating real-time apps that '
-            'update UI in response to changes in the Firestore database. '
-            'Most of the time you take advantage of that when drawing collections'
-            'or documents with Stream Providers.\n\n'
-            'If your collections are too large or documents receive too many updates '
-            'that you don\'t need to listen to, you can use Future Providers'),
       ]),
       SectionLayout(children: [
-        Text('Document Stream Provider',
+        Text('State Notifier Provider',
             style: Theme.of(context).textTheme.titleLarge),
-        Text(
-            'To show an up-to-date document content on the screen, you can use docSP provider.\n\n'
-            'path: String - path to the document in the Firestore database\n\n'),
+        Text('State Notifier Providers (SNPs) are used for variables that '
+            'have to update User Interface when their values change.\n\n'
+            'User SNP<T> templated type to create a state notifier provider.\n\n'
+            'When the value of the state notifier provider changes, the widget '
+            'that is listening to it will be rebuilt.\n\n'
+            'This will update the UI with the latest value of SNP.\n\n'),
         CodeLayout("""
-final AutoDisposeStreamProviderFamily<DocumentSnapshot<Map<String, dynamic>>,
-        String> docSP
+final SNP text = snp('Hello World!');
   """),
         Text('Here is an example:\n'),
         CodeLayout("""
 Widget build(BuildContext context, WidgetRef ref) {
-  return ref.watch(docSP('test_collection/test_doc')).when(
-    data: (doc) => Text(doc.data()['text']),
-    loading: () => CircularProgressIndicator(),
-    error: (err, stack) => Text(err.toString()),
+  return 
+    Column(
+      children: [
+        Text(ref.watch(text.state)),
+        ElevatedButton(
+          onPressed: () => 
+            ref.read(text.notifier).value = 
+              ref.read(text.notifier).value == 'Nevermind!' 
+                ? 'Hello World!' 
+                : 'Nevermind!',
+          child: Text('Update'),
+        )
+      ],
+    );
   );
 }
   """),
         Row(children: [
-          CodeLayout("""{\n"""
-              """  text: 'hello world'\n"""
-              """}"""),
-          ref.watch(docSP('test_collection/test_doc')).when(
-                data: (doc) => Text(doc.data()?['text'] ?? 'null'),
-                loading: () => CircularProgressIndicator(),
-                error: (err, stack) => Text(err.toString()),
-              )
-        ])
-      ]),
-      SectionLayout(children: [
-        Text('Collection Stream Provider',
-            style: Theme.of(context).textTheme.titleLarge),
-        Text(
-            'Riverpod collection Stream Provider that listens to a collection\n'
-            'WARNING: Use with care as it returns all the documents in the collection\n'
-            'whenever any document in collection changes!\n'
-            'Only to be used on collections which size is known to be small\n'
-            'To work with large collections consider using [filteredColSP] to '
-            'limit the number of documents that are fetched.\n\n'),
-        CodeLayout(
-            """final AutoDisposeStreamProviderFamily<QuerySnapshot<Map<String, dynamic>>, String> colSP"""),
-        Text('Here is an example:\n'),
-        CodeLayout(""" 
-Widget build(BuildContext context, WidgetRef ref) {
-  return ref.watch(colSP('test_collection')).when(
-    data: (col) => 
-        Column(
-          children: col.docs
-              .map((doc) => Text(doc.data()?['text'] ?? 'null'))
-              .toList()),
-    loading: () => CircularProgressIndicator(),
-    error: (err, stack) => Text(err.toString()),
-  );
-}
-  """),
-        Row(children: [
-          CodeLayout("""{\n"""
-              """  test_doc: {\n"""
-              """    text: 'hello world'\n"""
-              """  }\n"""
-              """  test_doc1: {\n"""
-              """    text: 'hi again'\n"""
-              """  }\n"""
-              """}"""),
-          ref.watch(colSP('test_collection')).when(
-                data: (col) => Column(
-                    children: col.docs
-                        .map((doc) => Text(doc.data()?['text'] ?? 'null'))
-                        .toList()),
-                loading: () => CircularProgressIndicator(),
-                error: (err, stack) => Text(err.toString()),
-              ),
-        ])
-      ]),
-      SectionLayout(children: [
-        Text('Filtered Collection Stream Provider',
-            style: Theme.of(context).textTheme.titleLarge),
-        Text(
-            'Riverpod collection Stream Provider that listens to a collection\n'
-            'WARNING: Use with care as it returns all the documents in the collection\n'
-            'whenever any document in collection changes!\n'
-            'Only to be used on collections which size is known to be small\n'
-            'To work with large collections consider using [filteredColSP] to '
-            'limit the number of documents that are fetched.\n\n'),
-        CodeLayout(
-            """final AutoDisposeStreamProviderFamily<QuerySnapshot<Map<String, dynamic>>, String> colSP"""),
-        Text('Here is an example:\n'),
-        CodeLayout(""" 
-Widget build(BuildContext context, WidgetRef ref) {
-  return ref.watch(
-    colSPfiltered2(
-      'test_collection',
-      queries: [
-        QueryParam2('text', isEqualTo: 'hello world'),
-      ]
-    )).when(
-    data: (col) => Column(
-        children: col.docs
-            .map((doc) => Text(doc.data()?['text'] ?? 'null'))
-            .toList()),
-    loading: () => CircularProgressIndicator(),
-    error: (err, stack) => Text(err.toString()),
-  );
-}
-  """),
-        Row(children: [
-          CodeLayout("""{\n"""
-              """  test_doc: {\n"""
-              """    text: 'hello world'\n"""
-              """  }\n"""
-              """  test_doc1: {\n"""
-              """    text: 'hi again'\n"""
-              """  }\n"""
-              """}"""),
-          ref
-              .watch(colSPfiltered2('test_collection', queries: [
-                QueryParam2('text', isEqualTo: 'hello world'),
-              ]))
-              .when(
-                data: (col) => Column(
-                    children: col.docs
-                        .map((doc) => Text(doc.data()?['text'] ?? 'null'))
-                        .toList()),
-                loading: () => CircularProgressIndicator(),
-                error: (err, stack) => Text(err.toString()),
-              ),
+          Column(children: [
+            Text(ref.watch(text)),
+            ElevatedButton(
+              onPressed: () => ref.read(text.notifier).value =
+                  ref.read(text.notifier).value == 'Nevermind!'
+                      ? 'Hello World!'
+                      : 'Nevermind!',
+              child: Text('Update'),
+            )
+          ])
         ])
       ]),
     ]);
   }
-}
-
-final Map<String, Map<QueryOperator, Object>> v = {
-  'text': {QueryOperator.isEqualTo: 'hello world'}
-};
-
-final Map<String, Map<QueryOperator, Object>> v1 = {
-  'text': {QueryOperator.isEqualTo: 'hello world'},
-  'text': {QueryOperator.isEqualTo: 'hello world'}
-};
-
-enum QueryOperator {
-  isEqualTo,
-  isLessThan,
-  isLessThanOrEqualTo,
-  isGreaterThan,
-  isGreaterThanOrEqualTo,
-  arrayContains,
-  arrayContainsAny,
-  whereIn,
-  whereNotIn,
-  isNull,
 }
