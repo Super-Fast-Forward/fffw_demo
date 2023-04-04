@@ -90,7 +90,12 @@ Widget build(BuildContext context, WidgetRef ref) {
   """),
         Row(children: [
           CodeLayout("""{\n"""
-              """  text: 'hello world'\n"""
+              """  test_doc: {\n"""
+              """    text: 'hello world'\n"""
+              """  }\n"""
+              """  test_doc1: {\n"""
+              """    text: 'hi again'\n"""
+              """  }\n"""
               """}"""),
           ref.watch(colSP('test_collection')).when(
                 data: (col) => Column(
