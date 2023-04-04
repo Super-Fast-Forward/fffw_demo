@@ -10,6 +10,7 @@ import 'package:widgets/app_bar/app_bar.dart';
 import 'package:widgets/doc_field_text.dart';
 import 'package:widgets/doc_field_text_edit.dart';
 import 'package:widgets/doc_multiline_text_field.dart';
+import 'package:widgets/switch.dart';
 
 import 'code_layout.dart';
 import 'nav_rail.dart';
@@ -84,6 +85,27 @@ class WidgetsPage extends ConsumerWidget {
                     .doc('test_doc'),
                 'text',
                 10),
+          ),
+        ],
+      ),
+      SectionLayout(
+        children: [
+          Text('SwitchWidget', style: Theme.of(context).textTheme.titleLarge),
+          Text(
+              'SwitchWidget is a widget that displays a field from a Firestore document.'
+              'It is a wrapper around the Switch widget. It is using the StreamProvider to listen'
+              ' to changes in the document.'),
+          Text('Example:', style: Theme.of(context).textTheme.titleMedium),
+          CodeLayout(
+              """final docRef = FirebaseFirestore.instance.collection('test_collection').doc('test_doc');\n\n"""
+              """SwitchWidget(docRef, 'isGood')"""),
+          ExampleLayout(
+            child: SwitchWidget(
+              FirebaseFirestore.instance
+                  .collection('test_collection')
+                  .doc('test_doc'),
+              'isGood',
+            ),
           ),
         ],
       ),
