@@ -66,6 +66,14 @@ Widget build(BuildContext context, WidgetRef ref) {
           ])
         ])
       ]),
+      SectionLayout(children: [
+        Text('authStateProvider',
+            style: Theme.of(context).textTheme.titleLarge),
+        Text(''),
+        CodeLayout("""
+
+  """)
+      ])
     ]);
   }
 }

@@ -37,8 +37,12 @@ class HelpersPage extends ConsumerWidget {
           ExampleLayout(child: Text(formatDate(Timestamp.now()))),
           Text(
               'This is handy when you receive the Timestamp type from Firestore document. '),
-          CodeLayout(
-              """DocFieldText(docRef, 'timestamp', formatter: formatDate) """),
+          CodeLayout("""DocStreamWidget(\n"""
+              """  docSP('test_collection/test_doc'),\n"""
+              """    (context, doc) {\n"""
+              """      return Text(formatDate(doc.get('timeCreated')));\n"""
+              """  }\n"""
+              """)"""),
           ExampleLayout(
               child: DocStreamWidget(docSP('test_collection/test_doc'),
                   (context, doc) {

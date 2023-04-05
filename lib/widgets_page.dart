@@ -6,10 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_highlight/flutter_highlight.dart';
 import 'package:flutter_highlight/themes/vs.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:providers/firestore.dart';
 import 'package:widgets/app_bar/app_bar.dart';
+import 'package:widgets/col_stream_widget.dart';
 import 'package:widgets/doc_field_text.dart';
 import 'package:widgets/doc_field_text_edit.dart';
 import 'package:widgets/doc_multiline_text_field.dart';
+import 'package:widgets/doc_stream_widget.dart';
 import 'package:widgets/switch.dart';
 
 import 'code_layout.dart';
@@ -105,6 +108,76 @@ class WidgetsPage extends ConsumerWidget {
                   .collection('test_collection')
                   .doc('test_doc'),
               'isGood',
+            ),
+          ),
+        ],
+      ),
+      SectionLayout(
+        children: [
+          Text('DocStreamWidget',
+              style: Theme.of(context).textTheme.titleLarge),
+
+          /// A widget that builds itself based on the latest snapshot of interaction
+          /// with a [Stream].
+          ///
+          /// [docStreamProvider]: The stream provider to listen to.
+          /// [builder]: Called every time the [docStreamProvider] emits a new item to build
+          /// the widget based on the document received from Firestore.
+          ///
+          /// Example:
+          /// ```dart
+          /// Widget build(BuildContext context, WidgetRef ref) {
+          ///  return
+          ///   DocStreamWidget(
+          ///    docSP('test_collection/test_doc'),
+          ///   (context, doc) => Text(doc.data()['text'])),
+          /// );
+          ///
+
+          Text(
+              'DocStreamWidget is a widget that builds itself based on the latest snapshot of interaction'
+              ' with a Firestore document.'
+              'It is using the StreamProvider to listen'
+              ' to changes in the document.'),
+
+          Text('Example:', style: Theme.of(context).textTheme.titleMedium),
+          CodeLayout(
+              """final docRef = FirebaseFirestore.instance.collection('test_collection').doc('test_doc');\n\n"""
+              """DocStreamWidget(docRef, (context, doc) => Text(doc.data()['text']))"""),
+          ExampleLayout(
+            child: DocStreamWidget(
+              docSP('test_collection/test_doc'),
+              (context, doc) => Text(doc.data()?['text'] ?? 'no data'),
+            ),
+          ),
+        ],
+      ),
+      SectionLayout(
+        children: [
+          Text('ColStreamWidget',
+              style: Theme.of(context).textTheme.titleLarge),
+          Text(
+              'ColStreamWidget is a widget that builds itself based on the latest snapshot of interaction'
+              ' with a Firestore collection.'
+              'It is using the StreamProvider to listen'
+              ' to changes in the collection.'),
+          Text('Example:', style: Theme.of(context).textTheme.titleMedium),
+          CodeLayout("""ColStreamWidget(\n"""
+              """  colSP('test_collection'),\n"""
+              """  (context, col, items) => ListView(\n"""
+              """    shrinkWrap: true,\n"""
+              """    children: items,\n"""
+              """  ),\n"""
+              """  (c, e) => Text(e.data()['text']\n"""
+              """ ),\n"""),
+          ExampleLayout(
+            child: ColStreamWidget<Widget>(
+              colSP('test_collection'),
+              (context, col, items) => ListView(
+                shrinkWrap: true,
+                children: items,
+              ),
+              (c, e) => Text(e.data()?['text'] ?? 'no data'),
             ),
           ),
         ],

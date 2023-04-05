@@ -1,3 +1,4 @@
+import 'package:fffw_demo/example_layout.dart';
 import 'package:fffw_demo/page_layout.dart';
 import 'package:fffw_demo/section_layout.dart';
 import 'package:flutter/material.dart';
@@ -121,14 +122,15 @@ Widget build(BuildContext context, WidgetRef ref) {
 Widget build(BuildContext context, WidgetRef ref) {
   return ref.watch(
     colSPfiltered2(
-      'test_collection',
+      'company',
       queries: [
-        QueryParam2('text', isEqualTo: 'hello world'),
+        QueryParam2('type', isEqualTo: 'shared'),
+        QueryParam2('isStartup', isEqualTo: true),
       ]
     )).when(
     data: (col) => Column(
         children: col.docs
-            .map((doc) => Text(doc.data()?['text'] ?? 'null'))
+            .map((doc) => Text(doc.data()['name'] ?? 'null'))
             .toList()),
     loading: () => CircularProgressIndicator(),
     error: (err, stack) => Text(err.toString()),
@@ -136,26 +138,42 @@ Widget build(BuildContext context, WidgetRef ref) {
 }
   """),
         Row(children: [
-          CodeLayout("""{\n"""
-              """  test_doc: {\n"""
-              """    text: 'hello world'\n"""
-              """  }\n"""
-              """  test_doc1: {\n"""
-              """    text: 'hi again'\n"""
-              """  }\n"""
-              """}"""),
-          ref
-              .watch(colSPfiltered2('test_collection', queries: [
-                QueryParam2('text', isEqualTo: 'hello world'),
-              ]))
-              .when(
-                data: (col) => Column(
-                    children: col.docs
-                        .map((doc) => Text(doc.data()?['text'] ?? 'null'))
-                        .toList()),
-                loading: () => CircularProgressIndicator(),
-                error: (err, stack) => Text(err.toString()),
-              ),
+          Column(
+            children: [
+              Text('Collection in Firestore:'),
+              CodeLayout("""{\n"""
+                  """  jsn: {\n"""
+                  """    name: 'Job Search Ninja'\n"""
+                  """    type: 'shared'\n"""
+                  """    isStartup: true\n"""
+                  """  }\n"""
+                  """  tesla: {\n"""
+                  """    name: 'Tesla'\n"""
+                  """    type: 'public'\n"""
+                  """    isStartup: false\n"""
+                  """  }\n"""
+                  """  spacex: {\n"""
+                  """    name: 'SpaceX'\n"""
+                  """    type: 'private'\n"""
+                  """    isStartup: true\n"""
+                  """  }\n"""
+                  """}"""),
+            ],
+          ),
+          ExampleLayout(
+              child: ref
+                  .watch(colSPfiltered2('company', queries: [
+                    const QueryParam2('type', isEqualTo: 'shared'),
+                    const QueryParam2('isStartup', isEqualTo: true),
+                  ]))
+                  .when(
+                    data: (col) => Column(
+                        children: col.docs
+                            .map((doc) => Text(doc.data()['name'] ?? 'null'))
+                            .toList()),
+                    loading: () => CircularProgressIndicator(),
+                    error: (err, stack) => Text(err.toString()),
+                  )),
         ])
       ]),
     ]);
