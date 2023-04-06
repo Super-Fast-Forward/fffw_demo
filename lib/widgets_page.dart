@@ -262,10 +262,11 @@ class WidgetsPage extends ConsumerWidget {
                     length: 2,
                     child: CustomAppBar(
                       leading: const Icon(Icons.menu),
-                      tabs: ['Tab 1', 'Tab 2'],
-                      onTabSelected: (tab) {
+                      tabs: ['Tab 1!', 'Tab 2!'],
+                      onTabSelected: (context, index, tab) {
                         print(tab);
                       },
+                      maxTabWidth: 25,
                     ))),
           ),
         ],
