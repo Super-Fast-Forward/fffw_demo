@@ -13,6 +13,7 @@ import 'package:widgets/doc_field_text.dart';
 import 'package:widgets/doc_field_text_edit.dart';
 import 'package:widgets/doc_multiline_text_field.dart';
 import 'package:widgets/doc_stream_widget.dart';
+import 'package:widgets/nav_rail.dart';
 import 'package:widgets/switch.dart';
 
 import 'code_layout.dart';
@@ -179,6 +180,67 @@ class WidgetsPage extends ConsumerWidget {
               ),
               (c, e) => Text(e.data()?['text'] ?? 'no data'),
             ),
+          ),
+        ],
+      ),
+      SectionLayout(
+        children: [
+          Text('NavRail', style: Theme.of(context).textTheme.titleLarge),
+
+          ///
+          /// NavigationRail widget with Riverpod state management
+          ///
+          /// Example:
+          ///
+          /// ```dart
+          /// final navRail = NavRail(
+          ///  destinations: {
+          ///   'Home': NavigationRailDestination(
+          ///    icon: const Icon(Icons.home),
+          ///   selectedIcon: const Icon(Icons.home),
+          ///   label: const Text('Home'),
+          ///  ),
+          /// 'Settings': NavigationRailDestination(
+          ///  icon: const Icon(Icons.settings),
+          /// selectedIcon: const Icon(Icons.settings),
+          /// label: const Text('Settings'),
+          /// ),
+          /// },
+          /// );
+          /// ```
+          ///
+
+          Text('NavigationRail widget with Riverpod state management'),
+          Text('Example:', style: Theme.of(context).textTheme.titleMedium),
+          CodeLayout("""final navRail = NavRail(\n"""
+              """  destinations: {\n"""
+              """   'Home': NavigationRailDestination(\n"""
+              """    icon: const Icon(Icons.home),\n"""
+              """   selectedIcon: const Icon(Icons.home),\n"""
+              """   label: const Text('Home'),\n"""
+              """  ),\n"""
+              """'Settings': NavigationRailDestination(\n"""
+              """  icon: const Icon(Icons.settings),\n"""
+              """ selectedIcon: const Icon(Icons.settings),\n"""
+              """ label: const Text('Settings'),\n"""
+              """ ),\n"""
+              """},\n"""
+              """);\n"""),
+          ExampleLayout(
+            child: SizedBox(
+                height: 500,
+                child: NavRail(destinations: const {
+                  'Home': NavigationRailDestination(
+                    icon: Icon(Icons.home),
+                    selectedIcon: Icon(Icons.home),
+                    label: Text('Home'),
+                  ),
+                  'Settings': NavigationRailDestination(
+                    icon: Icon(Icons.settings),
+                    selectedIcon: Icon(Icons.settings),
+                    label: Text('Settings'),
+                  ),
+                })),
           ),
         ],
       ),
