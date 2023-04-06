@@ -3,12 +3,10 @@ import 'package:fffw_demo/example_layout.dart';
 import 'package:fffw_demo/page_layout.dart';
 import 'package:fffw_demo/section_layout.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_highlight/flutter_highlight.dart';
-import 'package:flutter_highlight/themes/vs.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:providers/firestore.dart';
-import 'package:widgets/app_bar/app_bar.dart';
 import 'package:widgets/col_stream_widget.dart';
+import 'package:widgets/custom_app_bar.dart';
 import 'package:widgets/doc_field_text.dart';
 import 'package:widgets/doc_field_text_edit.dart';
 import 'package:widgets/doc_multiline_text_field.dart';
@@ -17,7 +15,6 @@ import 'package:widgets/nav_rail.dart';
 import 'package:widgets/switch.dart';
 
 import 'code_layout.dart';
-import 'nav_rail.dart';
 
 class WidgetsPage extends ConsumerWidget {
   @override
@@ -241,6 +238,35 @@ class WidgetsPage extends ConsumerWidget {
                     label: Text('Settings'),
                   ),
                 })),
+          ),
+        ],
+      ),
+      SectionLayout(
+        children: [
+          Text('CustomAppBar', style: Theme.of(context).textTheme.titleLarge),
+          Text(
+              'A custom app bar that can be used in place of the default [AppBar] widget.'
+              'It can be used to add a [TabBar] to the [AppBar] or to add a [ThemeSwitch] and'
+              '[CurrentUserAvatarExtended] to the [AppBar] actions.'),
+          Text('Example:', style: Theme.of(context).textTheme.titleMedium),
+          CodeLayout("""CustomAppBar(\n"""
+              """  tabs: ['Tab 1', 'Tab 2'],\n"""
+              """  onTabSelected: (tab) {\n"""
+              """    print(tab);\n"""
+              """  },\n"""
+              """);\n"""),
+          ExampleLayout(
+            child: SizedBox(
+                height: 300,
+                child: DefaultTabController(
+                    length: 2,
+                    child: CustomAppBar(
+                      leading: const Icon(Icons.menu),
+                      tabs: ['Tab 1', 'Tab 2'],
+                      onTabSelected: (tab) {
+                        print(tab);
+                      },
+                    ))),
           ),
         ],
       ),
