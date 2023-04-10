@@ -2,6 +2,7 @@ import 'package:auth/main.dart';
 import 'package:auth/providers.dart';
 import 'package:fffw_demo/navigator.dart';
 import 'package:fffw_demo/providers_page.dart';
+import 'package:fffw_demo/sandbox_page.dart';
 import 'package:fffw_demo/utils_page.dart';
 import 'package:fffw_demo/widgets_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -55,6 +56,7 @@ class MainApp extends ConsumerWidget {
           '/widgets': (context, settings) => WidgetsPage(),
           '/helpers': (context, settings) => HelpersPage(),
           '/utils': (context, settings) => UtilsPage(),
+          '/sandbox': (context, settings) => SandboxPage(),
         }),
       );
 }

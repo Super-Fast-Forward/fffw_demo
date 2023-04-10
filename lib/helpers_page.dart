@@ -13,7 +13,7 @@ import 'code_layout.dart';
 class HelpersPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return PageLayout(title: 'Widgets', sections: [
+    return PageLayout(title: 'Utilities', sections: [
       SectionLayout(
         children: [
           Text('Strings', style: Theme.of(context).textTheme.titleLarge),
