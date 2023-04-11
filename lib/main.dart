@@ -1,6 +1,5 @@
 import 'package:auth/main.dart';
 import 'package:auth/providers.dart';
-import 'package:fffw_demo/navigator.dart';
 import 'package:fffw_demo/providers_page.dart';
 import 'package:fffw_demo/sandbox_page.dart';
 import 'package:fffw_demo/utils_page.dart';
