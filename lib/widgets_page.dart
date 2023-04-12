@@ -9,6 +9,7 @@ import 'package:widgets/col_stream_widget.dart';
 import 'package:widgets/custom_app_bar.dart';
 import 'package:widgets/doc_field_text.dart';
 import 'package:widgets/doc_field_text_edit.dart';
+import 'package:widgets/doc_field_text_field.dart';
 import 'package:widgets/doc_stream_widget.dart';
 import 'package:widgets/nav_rail.dart';
 import 'package:widgets/switch.dart';
