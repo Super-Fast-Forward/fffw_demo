@@ -47,23 +47,17 @@ dependencies:
       path: theme
   url_launcher: ^6.1.10
 
-dependency_overrides:
-  common:
-    path: ../flutter_firebase_framework/common
-  theme:
-    path: ../flutter_firebase_framework/theme
-  providers:
-    path: ../flutter_firebase_framework/providers
-  auth:
-    path: ../flutter_firebase_framework/auth
-  widgets:
-    path: ../flutter_firebase_framework/widgets
-
-
-
-
-
-
+# dependency_overrides:
+#   common:
+#     path: ../flutter_firebase_framework/common
+#   theme:
+#     path: ../flutter_firebase_framework/theme
+#   providers:
+#     path: ../flutter_firebase_framework/providers
+#   auth:
+#     path: ../flutter_firebase_framework/auth
+#   widgets:
+#     path: ../flutter_firebase_framework/widgets
 
 
 dev_dependencies:
