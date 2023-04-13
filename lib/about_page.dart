@@ -16,6 +16,7 @@ class AboutPage extends ConsumerWidget {
         Text('FFFW is a framework for building Flutter apps with Firebase'
             'It is a collection of widgets, providers and helpers to make development faster and easier.'
             'It is using Riverpod for state management and Firestore for data storage.'),
+        Image.asset('fffw.png'),
         Text('Codebase', style: Theme.of(context).textTheme.titleMedium),
         Text('The project is open source and can be found on GitHub:'),
         Link(
