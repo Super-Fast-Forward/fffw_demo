@@ -1,14 +1,20 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fffw_demo/example_layout.dart';
 import 'package:fffw_demo/page_layout.dart';
 import 'package:fffw_demo/section_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:providers/firestore.dart';
+import 'package:providers/generic.dart';
+import 'package:widgets/doc_print.dart';
+import 'package:widgets/doc_stream_widget.dart';
 import 'package:widgets/link.dart';
 
 import 'code_layout.dart';
 
 class DataPage extends ConsumerWidget {
+  final SNP companyName = snp<String>('jsn');
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return PageLayout(title: 'Data Access', sections: [
@@ -174,6 +180,40 @@ Widget build(BuildContext context, WidgetRef ref) {
                     loading: () => CircularProgressIndicator(),
                     error: (err, stack) => Text(err.toString()),
                   )),
+        ])
+      ]),
+      SectionLayout(children: [
+        Text('Combining Stream Providers with State Notifier providers',
+            style: Theme.of(context).textTheme.titleLarge),
+        Text(''),
+        // CodeLayout(
+        //     """final AutoDisposeStreamProviderFamily<QuerySnapshot<Map<String, dynamic>>, String> colSP"""),
+        // Text('Here is an example:\n'),
+        CodeLayout(""" 
+  """),
+        Row(children: [
+          ExampleLayout(child: Consumer(builder: (context, ref, child) {
+            return Column(children: [
+              ElevatedButton(
+                onPressed: () {
+                  ref.read(companyName.notifier).value = 'tesla';
+                },
+                child: Text('Change to tesla'),
+              ),
+              Text(ref.watch(companyName).toString()),
+              DocStreamWidget(
+                  docSP('company/${ref.watch(companyName)}'),
+                  (context, doc) => Row(
+                        children: [
+                          ElevatedButton(
+                              onPressed:
+                                  doc.exists ? () => print('contacted') : null,
+                              child: Text('Contact Company')),
+                          DocPrintWidget(doc.reference)
+                        ],
+                      ))
+            ]);
+          }))
         ])
       ]),
     ]);
