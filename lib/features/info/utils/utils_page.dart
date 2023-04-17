@@ -1,8 +1,4 @@
-import 'package:fffw_demo/core/shared_widgets/page_layout.dart';
-import 'package:fffw_demo/core/shared_widgets/section_layout.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:widgets/link.dart';
+import 'package:fffw_demo/core/_core_exports.dart';
 
 class UtilsPage extends ConsumerWidget {
   @override

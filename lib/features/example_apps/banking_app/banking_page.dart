@@ -1,7 +1,4 @@
-import 'package:fffw_demo/core/shared_widgets/page_layout.dart';
-import 'package:fffw_demo/core/shared_widgets/section_layout.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fffw_demo/core/_core_exports.dart';
 
 class BankingAppWidget extends ConsumerWidget {
   const BankingAppWidget({super.key});

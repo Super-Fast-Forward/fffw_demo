@@ -1,20 +1,4 @@
-
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fffw_demo/core/shared_widgets/example_layout.dart';
-import 'package:fffw_demo/core/shared_widgets/page_layout.dart';
-import 'package:fffw_demo/core/shared_widgets/section_layout.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:providers/firestore.dart';
-import 'package:widgets/col_stream_widget.dart';
-import 'package:widgets/custom_app_bar.dart';
-import 'package:widgets/doc_field_text.dart';
-import 'package:widgets/doc_field_text_edit.dart';
-import 'package:widgets/doc_field_text_field.dart';
-import 'package:widgets/doc_stream_widget.dart';
-import 'package:widgets/nav_rail.dart';
-import 'package:widgets/switch.dart';
-import 'package:fffw_demo/core/shared_widgets/code_layout.dart';
+import 'package:fffw_demo/core/_core_exports.dart';
 
 class WidgetsPage extends ConsumerWidget {
   @override

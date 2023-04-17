@@ -1,20 +1,8 @@
 import 'package:auth/main.dart';
 import 'package:auth/providers.dart';
-import 'package:fffw_demo/features/info/about/about_page.dart';
-import 'package:fffw_demo/features/info/auth/auth_page.dart';
-import 'package:fffw_demo/features/info/data_access/data_access_page.dart';
-import 'package:fffw_demo/features/info/helpers/helpers_page.dart';
-import 'package:fffw_demo/features/info/providers/providers_page.dart';
-import 'package:fffw_demo/features/info/utils/utils_page.dart';
-import 'package:fffw_demo/features/info/widgets/widgets_page.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:theme/config.dart';
+import 'package:fffw_demo/core/_core_exports.dart';
 import 'package:theme/theme_mode.dart';
 import 'package:widgets/routing.dart';
-import 'features/info/sandbox/sandbox_page.dart';
 import 'firebase_options.dart';
 
 void main() async {

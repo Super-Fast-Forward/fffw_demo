@@ -1,9 +1,4 @@
-import 'package:fffw_demo/core/shared_widgets/nav_rail.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_highlight/flutter_highlight.dart';
-import 'package:flutter_highlight/themes/vs.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:widgets/custom_app_bar.dart';
+import 'package:fffw_demo/core/_core_exports.dart';
 
 //TODO isn't used so I am not sure how to categorize it.
 class ThemesPage extends ConsumerWidget {

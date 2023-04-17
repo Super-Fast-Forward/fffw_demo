@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:widgets/custom_app_bar.dart';
-import 'nav_rail.dart';
+import 'package:fffw_demo/core/_core_exports.dart';
 
 class PageLayout extends ConsumerWidget {
   final List<Widget> sections;
