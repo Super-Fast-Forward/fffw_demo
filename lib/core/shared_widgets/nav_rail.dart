@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:providers/generic.dart';
 import 'package:widgets/nav_rail.dart';
 
 class CustomNavRail extends ConsumerWidget {
@@ -34,6 +33,10 @@ class CustomNavRail extends ConsumerWidget {
     'sandbox': const NavigationRailDestination(
       icon: Icon(Icons.snowing),
       label: Text('Helpers'),
+    ),
+    'bankingApp': const NavigationRailDestination(
+      icon: Icon(Icons.monetization_on),
+      label: Text('Example'),
     ),
   };
 

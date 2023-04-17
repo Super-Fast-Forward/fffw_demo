@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_highlight/flutter_highlight.dart';
-import 'package:flutter_highlight/themes/vs.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:providers/firestore.dart';
 import 'package:widgets/custom_app_bar.dart';
-
 import 'nav_rail.dart';
 
 class PageLayout extends ConsumerWidget {
