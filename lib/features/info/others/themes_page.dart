@@ -7,17 +7,18 @@ class ThemesPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-        appBar: CustomAppBar(
-          title: const Text('Themes'),
-        ),
-        body: Row(
-          children: [
-            CustomNavRail.getNavRail(),
-            Column(
-              children: [
-                Text('Firestore Collections Providers',
-                    style: Theme.of(context).textTheme.labelLarge),
-                HighlightView("""            
+      appBar: CustomAppBar(
+        title: const Text('Themes'),
+      ),
+      body: Row(
+        children: [
+          CustomNavRail.getNavRail(),
+          Column(
+            children: [
+              Text('Firestore Collections Providers',
+                  style: Theme.of(context).textTheme.labelLarge),
+              HighlightView(
+                """            
 /// Riverpod collection Stream Provider that listens to a collection
 ///
 /// WARNING: Use with care as it returns all the documents in the collection
@@ -29,16 +30,20 @@ final AutoDisposeStreamProviderFamily<QuerySnapshot<Map<String, dynamic>>,
             String> colSP
 
   """,
-                    language: 'dart',
-                    theme: vsTheme
-                    // githubTheme
-                    ,
-                    padding: const EdgeInsets.all(12)),
-                Text('Providers Page',
-                    style: Theme.of(context).textTheme.labelLarge),
-              ],
-            ),
-          ],
-        ));
+                language: 'dart',
+                theme: vsTheme
+                // githubTheme
+                ,
+                padding: const EdgeInsets.all(12),
+              ),
+              Text(
+                'Providers Page',
+                style: Theme.of(context).textTheme.labelLarge,
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
   }
 }

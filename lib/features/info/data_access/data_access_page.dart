@@ -6,36 +6,50 @@ class DataPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return PageLayout(title: 'Data Access', sections: [
-      const SectionLayout(children: [
-        Text('To better understand how to use providers,'
+    return PageLayout(
+      title: 'Data Access',
+      sections: [
+        const SectionLayout(children: [
+          Text(
+            'To better understand how to use providers,'
             'please read the Riverpod documentation first.\n'
             'The following providers are created to simplify the usage of Firestore '
-            'and use the best practices of Riverpod:\n'),
-        Link('https://riverpod.dev/'),
-        Text(
+            'and use the best practices of Riverpod:\n',
+          ),
+          Link('https://riverpod.dev/'),
+          Text(
             'If you are not familiar with concepts of Collections and Documents,'
-            'please read the Firestore documentation first:\n'),
-        Link('https://firebase.google.com/docs/firestore'),
-        Text('Firestore is great for creating real-time apps that '
+            'please read the Firestore documentation first:\n',
+          ),
+          Link('https://firebase.google.com/docs/firestore'),
+          Text(
+            'Firestore is great for creating real-time apps that '
             'update UI in response to changes in the Firestore database. '
             'Most of the time you take advantage of that when drawing collections'
             'or documents with Stream Providers.\n\n'
             'If your collections are too large or documents receive too many updates '
-            'that you don\'t need to listen to, you can use Future Providers'),
-      ]),
-      SectionLayout(children: [
-        Text('Document Stream Provider',
-            style: Theme.of(context).textTheme.titleLarge),
-        const Text(
-            'To show an up-to-date document content on the screen, you can use docSP provider.\n\n'
-            'path: String - path to the document in the Firestore database\n\n'),
-        const CodeLayout("""
+            'that you don\'t need to listen to, you can use Future Providers',
+          ),
+        ]),
+        SectionLayout(
+          children: [
+            Text(
+              'Document Stream Provider',
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
+            const Text(
+              'To show an up-to-date document content on the screen, you can use docSP provider.\n\n'
+              'path: String - path to the document in the Firestore database\n\n',
+            ),
+            const CodeLayout(
+              """
 final AutoDisposeStreamProviderFamily<DocumentSnapshot<Map<String, dynamic>>,
         String> docSP
-  """),
-        const Text('Here is an example:\n'),
-        const CodeLayout("""
+  """,
+            ),
+            const Text('Here is an example:\n'),
+            const CodeLayout(
+              """
 Widget build(BuildContext context, WidgetRef ref) {
   return ref.watch(docSP('test_collection/test_doc')).when(
     data: (doc) => Text(doc.data()['text']),
@@ -43,32 +57,49 @@ Widget build(BuildContext context, WidgetRef ref) {
     error: (err, stack) => Text(err.toString()),
   );
 }
-  """),
-        Row(children: [
-          const CodeLayout("""{\n"""
-              """  text: 'hello world'\n"""
-              """}"""),
-          ref.watch(docSP('test_collection/test_doc')).when(
-                data: (doc) => Text(doc.data()?['text'] ?? 'null'),
-                loading: () => const CircularProgressIndicator(),
-                error: (err, stack) => Text(err.toString()),
-              )
-        ])
-      ]),
-      SectionLayout(children: [
-        Text('Collection Stream Provider',
-            style: Theme.of(context).textTheme.titleLarge),
-        const Text(
+  """,
+            ),
+            Row(
+              children: [
+                const CodeLayout(
+                  """{\n"""
+                  """  text: 'hello world'\n"""
+                  """}""",
+                ),
+                ref
+                    .watch(
+                      docSP('test_collection/test_doc'),
+                    )
+                    .when(
+                      data: (doc) => Text(doc.data()?['text'] ?? 'null'),
+                      loading: () => const CircularProgressIndicator(),
+                      error: (err, stack) => Text(
+                        err.toString(),
+                      ),
+                    ),
+              ],
+            ),
+          ],
+        ),
+        SectionLayout(children: [
+          Text(
+            'Collection Stream Provider',
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
+          const Text(
             'Riverpod collection Stream Provider that listens to a collection\n'
             'WARNING: Use with care as it returns all the documents in the collection\n'
             'whenever any document in collection changes!\n'
             'Only to be used on collections which size is known to be small\n'
             'To work with large collections consider using [filteredColSP] to '
-            'limit the number of documents that are fetched.\n\n'),
-        const CodeLayout(
-            """final AutoDisposeStreamProviderFamily<QuerySnapshot<Map<String, dynamic>>, String> colSP"""),
-        const Text('Here is an example:\n'),
-        const CodeLayout(""" 
+            'limit the number of documents that are fetched.\n\n',
+          ),
+          const CodeLayout(
+            """final AutoDisposeStreamProviderFamily<QuerySnapshot<Map<String, dynamic>>, String> colSP""",
+          ),
+          const Text('Here is an example:\n'),
+          const CodeLayout(
+            """ 
 Widget build(BuildContext context, WidgetRef ref) {
   return ref.watch(colSP('test_collection')).when(
     data: (col) => 
@@ -80,40 +111,52 @@ Widget build(BuildContext context, WidgetRef ref) {
     error: (err, stack) => Text(err.toString()),
   );
 }
-  """),
-        Row(children: [
-          const CodeLayout("""{\n"""
+  """,
+          ),
+          Row(children: [
+            const CodeLayout(
+              """{\n"""
               """  test_doc: {\n"""
               """    text: 'hello world'\n"""
               """  }\n"""
               """  test_doc1: {\n"""
               """    text: 'hi again'\n"""
               """  }\n"""
-              """}"""),
-          ref.watch(colSP('test_collection')).when(
-                data: (col) => Column(
+              """}""",
+            ),
+            ref
+                .watch(
+                  colSP('test_collection'),
+                )
+                .when(
+                  data: (col) => Column(
                     children: col.docs
                         .map((doc) => Text(doc.data()['text'] ?? 'null'))
-                        .toList()),
-                loading: () => const CircularProgressIndicator(),
-                error: (err, stack) => Text(err.toString()),
-              ),
-        ])
-      ]),
-      SectionLayout(children: [
-        Text('Filtered Collection Stream Provider',
-            style: Theme.of(context).textTheme.titleLarge),
-        const Text(
+                        .toList(),
+                  ),
+                  loading: () => const CircularProgressIndicator(),
+                  error: (err, stack) => Text(
+                    err.toString(),
+                  ),
+                ),
+          ])
+        ]),
+        SectionLayout(children: [
+          Text('Filtered Collection Stream Provider',
+              style: Theme.of(context).textTheme.titleLarge),
+          const Text(
             'Riverpod collection Stream Provider that listens to a collection\n'
             'WARNING: Use with care as it returns all the documents in the collection\n'
             'whenever any document in collection changes!\n'
             'Only to be used on collections which size is known to be small\n'
             'To work with large collections consider using [filteredColSP] to '
-            'limit the number of documents that are fetched.\n\n'),
-        const CodeLayout(
-            """final AutoDisposeStreamProviderFamily<QuerySnapshot<Map<String, dynamic>>, String> colSP"""),
-        const Text('Here is an example:\n'),
-        const CodeLayout(""" 
+            'limit the number of documents that are fetched.\n\n',
+          ),
+          const CodeLayout(
+              """final AutoDisposeStreamProviderFamily<QuerySnapshot<Map<String, dynamic>>, String> colSP"""),
+          const Text('Here is an example:\n'),
+          const CodeLayout(
+            """ 
 Widget build(BuildContext context, WidgetRef ref) {
   return ref.watch(
     colSPfiltered2(
@@ -131,81 +174,96 @@ Widget build(BuildContext context, WidgetRef ref) {
     error: (err, stack) => Text(err.toString()),
   );
 }
-  """),
-        Row(children: [
-          Column(
-            children: const [
-              Text('Collection in Firestore:'),
-              CodeLayout("""{\n"""
-                  """  jsn: {\n"""
-                  """    name: 'Job Search Ninja'\n"""
-                  """    type: 'shared'\n"""
-                  """    isStartup: true\n"""
-                  """  }\n"""
-                  """  tesla: {\n"""
-                  """    name: 'Tesla'\n"""
-                  """    type: 'public'\n"""
-                  """    isStartup: false\n"""
-                  """  }\n"""
-                  """  spacex: {\n"""
-                  """    name: 'SpaceX'\n"""
-                  """    type: 'private'\n"""
-                  """    isStartup: true\n"""
-                  """  }\n"""
-                  """}"""),
-            ],
+  """,
           ),
-          ExampleLayout(
-              child: ref
-                  .watch(colSPfiltered2('company', queries: [
-                    const QueryParam2('type', isEqualTo: 'shared'),
-                    const QueryParam2('isStartup', isEqualTo: true),
-                  ]))
-                  .when(
-                    data: (col) => Column(
-                        children: col.docs
-                            .map((doc) => Text(doc.data()['name'] ?? 'null'))
-                            .toList()),
-                    loading: () => const CircularProgressIndicator(),
-                    error: (err, stack) => Text(err.toString()),
-                  )),
-        ])
-      ]),
-      SectionLayout(children: [
-        Text('Combining Stream Providers with State Notifier providers',
-            style: Theme.of(context).textTheme.titleLarge),
-        const Text(''),
-        // CodeLayout(
-        //     """final AutoDisposeStreamProviderFamily<QuerySnapshot<Map<String, dynamic>>, String> colSP"""),
-        // Text('Here is an example:\n'),
-        const CodeLayout(""" 
+          Row(children: [
+            Column(
+              children: const [
+                Text('Collection in Firestore:'),
+                CodeLayout("""{\n"""
+                    """  jsn: {\n"""
+                    """    name: 'Job Search Ninja'\n"""
+                    """    type: 'shared'\n"""
+                    """    isStartup: true\n"""
+                    """  }\n"""
+                    """  tesla: {\n"""
+                    """    name: 'Tesla'\n"""
+                    """    type: 'public'\n"""
+                    """    isStartup: false\n"""
+                    """  }\n"""
+                    """  spacex: {\n"""
+                    """    name: 'SpaceX'\n"""
+                    """    type: 'private'\n"""
+                    """    isStartup: true\n"""
+                    """  }\n"""
+                    """}"""),
+              ],
+            ),
+            ExampleLayout(
+                child: ref
+                    .watch(colSPfiltered2('company', queries: [
+                      const QueryParam2('type', isEqualTo: 'shared'),
+                      const QueryParam2('isStartup', isEqualTo: true),
+                    ]))
+                    .when(
+                      data: (col) => Column(
+                          children: col.docs
+                              .map((doc) => Text(doc.data()['name'] ?? 'null'))
+                              .toList()),
+                      loading: () => const CircularProgressIndicator(),
+                      error: (err, stack) => Text(err.toString()),
+                    )),
+          ])
+        ]),
+        SectionLayout(
+          children: [
+            Text(
+              'Combining Stream Providers with State Notifier providers',
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
+            const Text(''),
+            // CodeLayout(
+            //     """final AutoDisposeStreamProviderFamily<QuerySnapshot<Map<String, dynamic>>, String> colSP"""),
+            // Text('Here is an example:\n'),
+            const CodeLayout(""" 
   """),
-        Row(children: [
-          ExampleLayout(child: Consumer(builder: (context, ref, child) {
-            return Column(children: [
-              ElevatedButton(
-                onPressed: () {
-                  ref.read(companyName.notifier).value = 'tesla';
-                },
-                child: const Text('Change to tesla'),
-              ),
-              Text(ref.watch(companyName).toString()),
-              DocStreamWidget(
-                  docSP('company/${ref.watch(companyName)}'),
-                  (context, doc) => Row(
+            Row(
+              children: [
+                ExampleLayout(
+                  child: Consumer(
+                    builder: (context, ref, child) {
+                      return Column(
                         children: [
                           ElevatedButton(
-                              onPressed: doc.exists
-                                  ? () => print('contacted')
-                                  : null, //TODO print in prod code ?
-                              child: const Text('Contact Company')),
-                          DocPrintWidget(doc.reference)
+                            onPressed: () {
+                              ref.read(companyName.notifier).value = 'tesla';
+                            },
+                            child: const Text('Change to tesla'),
+                          ),
+                          Text(ref.watch(companyName).toString()),
+                          DocStreamWidget(
+                            docSP('company/${ref.watch(companyName)}'),
+                            (context, doc) => Row(
+                              children: [
+                                ElevatedButton(
+                                    onPressed: doc.exists
+                                        ? () => print('contacted')
+                                        : null, //TODO print in prod code ?
+                                    child: const Text('Contact Company')),
+                                DocPrintWidget(doc.reference)
+                              ],
+                            ),
+                          )
                         ],
-                      ))
-            ]);
-          }))
-        ])
-      ]),
-    ]);
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ],
+    );
   }
 }

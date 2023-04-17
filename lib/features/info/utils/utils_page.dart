@@ -8,10 +8,13 @@ class UtilsPage extends ConsumerWidget {
     return PageLayout(title: 'Utils', sections: [
       SectionLayout(
         children: [
-          Text('Git ingore file',
-              style: Theme.of(context).textTheme.titleLarge),
+          Text(
+            'Git ingore file',
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
           const Text(
-              'Here is the .gitignore file that is custom made for FFFW:\n'),
+            'Here is the .gitignore file that is custom made for FFFW:\n',
+          ),
           const Link('')
         ],
       ),

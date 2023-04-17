@@ -7,7 +7,11 @@ class CodeLayout extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return HighlightView(code,
-        language: 'dart', theme: vsTheme, padding: const EdgeInsets.all(12));
+    return HighlightView(
+      code,
+      language: 'dart',
+      theme: vsTheme,
+      padding: const EdgeInsets.all(12),
+    );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:auth/providers.dart';
 import 'package:fffw_demo/core/_core_exports.dart';
+import 'package:fffw_demo/features/example_apps/banking_app/banking_page.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -13,13 +14,15 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  runApp(const ProviderScope(child: MainApp()));
+  runApp(
+    const ProviderScope(
+      child: MainApp(),
+    ),
+  );
 }
 
 class MainApp extends ConsumerWidget {
-  const MainApp({
-    Key? key,
-  }) : super(key: key);
+  const MainApp({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) => MaterialApp(
@@ -28,18 +31,20 @@ class MainApp extends ConsumerWidget {
         theme: ThemeData.light(),
         darkTheme: ThemeData.dark(),
         initialRoute: '/',
-        onGenerateRoute: generateRoutes({
-          '/': (context, settings) => const AboutPage(),
-          '/about': (context, settings) => const AboutPage(),
-          '/auth': (context, settings) => const AuthPage(),
-          '/providers': (context, settings) => ProvidersPage(),
-          '/data': (context, settings) => DataPage(),
-          '/widgets': (context, settings) => const WidgetsPage(),
-          '/helpers': (context, settings) => const HelpersPage(),
-          '/utils': (context, settings) => const UtilsPage(),
-          '/sandbox': (context, settings) => const SandboxPage(),
-          '/bankingApp': (context, settings) => const SandboxPage(),
-        }),
+        onGenerateRoute: generateRoutes(
+          {
+            '/': (context, settings) => const AboutPage(),
+            '/about': (context, settings) => const AboutPage(),
+            '/auth': (context, settings) => const AuthPage(),
+            '/providers': (context, settings) => ProvidersPage(),
+            '/data': (context, settings) => DataPage(),
+            '/widgets': (context, settings) => const WidgetsPage(),
+            '/helpers': (context, settings) => const HelpersPage(),
+            '/utils': (context, settings) => const UtilsPage(),
+            '/sandbox': (context, settings) => const SandboxPage(),
+            '/bankingApp': (context, settings) => const BankingAppPage(),
+          },
+        ),
       );
 }
 
@@ -84,8 +89,9 @@ class TheApp extends ConsumerWidget {
   }
 }
 
-final StreamProvider<User?> authStateChangesSP =
-    StreamProvider<User?>((ref) => FirebaseAuth.instance.authStateChanges());
+final StreamProvider<User?> authStateChangesSP = StreamProvider<User?>(
+  (ref) => FirebaseAuth.instance.authStateChanges(),
+);
 
 
 //TODO we should get constant text from static class
