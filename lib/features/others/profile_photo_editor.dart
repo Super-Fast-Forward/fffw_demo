@@ -13,6 +13,8 @@
 // //const double PROFILE_PHOTO_WIDTH = 50;
 // //const PERSON_URL = 'images/company.png';
 
+//TODO isn't used so I am not sure how to categorize it.
+
 // class ProfilePhotoEditor extends ConsumerWidget {
 //   final String bucketPath;
 //   ProfilePhotoEditor(this.bucketPath);

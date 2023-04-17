@@ -1,12 +1,11 @@
 import 'package:auth/login_screen.dart';
 import 'package:auth/main.dart';
-import 'package:fffw_demo/page_layout.dart';
-import 'package:fffw_demo/section_layout.dart';
+import 'package:fffw_demo/core/shared_widgets/page_layout.dart';
+import 'package:fffw_demo/core/shared_widgets/section_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import 'code_layout.dart';
-import 'example_layout.dart';
+import 'package:fffw_demo/core/shared_widgets/code_layout.dart';
+import 'package:fffw_demo/core/shared_widgets/example_layout.dart';
 
 class AuthPage extends ConsumerWidget {
   @override

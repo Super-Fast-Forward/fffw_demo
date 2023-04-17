@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/services.dart';
 
+//TODO isn't used so I am not sure how to categorize it.
 void showEditProfileDialog(BuildContext context, WidgetRef ref) {
   Widget buildPhoto(BuildContext context, WidgetRef ref) => Center(
       child: FirebaseAuth.instance.currentUser?.photoURL == null
