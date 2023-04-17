@@ -2,11 +2,13 @@ import 'package:fffw_demo/core/_core_exports.dart';
 
 //TODO isn't used so I am not sure how to categorize it.
 class ThemesPage extends ConsumerWidget {
+  const ThemesPage({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
         appBar: CustomAppBar(
-          title: Text('Themes'),
+          title: const Text('Themes'),
         ),
         body: Row(
           children: [
@@ -31,7 +33,7 @@ final AutoDisposeStreamProviderFamily<QuerySnapshot<Map<String, dynamic>>,
                     theme: vsTheme
                     // githubTheme
                     ,
-                    padding: EdgeInsets.all(12)),
+                    padding: const EdgeInsets.all(12)),
                 Text('Providers Page',
                     style: Theme.of(context).textTheme.labelLarge),
               ],

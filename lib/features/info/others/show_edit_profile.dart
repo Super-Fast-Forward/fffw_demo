@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 void showEditProfileDialog(BuildContext context, WidgetRef ref) {
   Widget buildPhoto(BuildContext context, WidgetRef ref) => Center(
       child: FirebaseAuth.instance.currentUser?.photoURL == null
-          ? Icon(Icons.person)
+          ? const Icon(Icons.person)
           : CircleAvatar(
               radius: 50,
               backgroundImage:
@@ -16,7 +16,7 @@ void showEditProfileDialog(BuildContext context, WidgetRef ref) {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-            title: Text("User Profile"),
+            title: const Text("User Profile"),
             content: SizedBox(
                 height: 200.0, // Change as per your requirement
                 width: 400.0, // Change as per your requirement
@@ -32,7 +32,8 @@ void showEditProfileDialog(BuildContext context, WidgetRef ref) {
                           onTap: () {
                             Clipboard.setData(ClipboardData(
                                 text: FirebaseAuth.instance.currentUser!.uid));
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(const SnackBar(
                               content: Text('copied to clipboard'),
                             ));
                           },
@@ -52,8 +53,8 @@ void showEditProfileDialog(BuildContext context, WidgetRef ref) {
                     ])),
             actions: <Widget>[
               ElevatedButton(
-                  key: Key('sign_out_btn'),
-                  child: Text("Sign Out"),
+                  key: const Key('sign_out_btn'),
+                  child: const Text("Sign Out"),
                   onPressed: () {
                     //Navigator.of(context).popUntil(ModalRoute.withName('/'));
                     // Navigator.of(context).pushNamed(LoginPage.route);
@@ -61,7 +62,7 @@ void showEditProfileDialog(BuildContext context, WidgetRef ref) {
                     FirebaseAuth.instance.signOut();
                   }),
               ElevatedButton(
-                child: Text("Close"),
+                child: const Text("Close"),
                 onPressed: () {
                   Navigator.of(context).pop();
                 },

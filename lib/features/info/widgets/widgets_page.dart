@@ -1,18 +1,20 @@
 import 'package:fffw_demo/core/_core_exports.dart';
 
 class WidgetsPage extends ConsumerWidget {
+  const WidgetsPage({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return PageLayout(title: 'Widgets', sections: [
       SectionLayout(
         children: [
           Text('DocFieldText', style: Theme.of(context).textTheme.titleLarge),
-          Text(
+          const Text(
               'DocFieldText is a widget that displays a field from a Firestore document. '
               'It is a wrapper around the Text widget. It is using the StreamProvider to listen'
               ' to changes in the document.'),
           Text('Code Example:', style: Theme.of(context).textTheme.titleMedium),
-          CodeLayout(
+          const CodeLayout(
               """final docRef = FirebaseFirestore.instance.collection('test_collection').doc('test_doc');\n\n"""
               """DocFieldText(docRef, 'text');"""),
           Text('Widget Example:',
@@ -31,12 +33,12 @@ class WidgetsPage extends ConsumerWidget {
         children: [
           Text('DocFieldTextEdit',
               style: Theme.of(context).textTheme.titleLarge),
-          Text(
+          const Text(
               'DocFieldTextEdit is a widget that displays a field from a Firestore document.'
               'It is a wrapper around the TextFormField widget. It is using the StreamProvider to listen'
               ' to changes in the document.'),
           Text('Example:', style: Theme.of(context).textTheme.titleMedium),
-          CodeLayout(
+          const CodeLayout(
               """final docRef = FirebaseFirestore.instance.collection('test_collection').doc('test_doc');\n\n"""
               """DocFieldTextEdit(docRef, 'text')"""),
           ExampleLayout(
@@ -53,14 +55,14 @@ class WidgetsPage extends ConsumerWidget {
         children: [
           Text('DocFieldTextField',
               style: Theme.of(context).textTheme.titleLarge),
-          Text(
+          const Text(
               'DocFieldTextField is a widget that displays a field from a Firestore document.'
               'It is a wrapper around the TextField widget. It is using the StreamProvider to listen'
               ' to changes in the document.'
               'It is using the TextEditingController to update the document field when the text changes.'
               'It is using the FocusNode to update the document field when the text changes.'),
           Text('Example:', style: Theme.of(context).textTheme.titleMedium),
-          CodeLayout(
+          const CodeLayout(
               """final docRef = FirebaseFirestore.instance.collection('test_collection').doc('test_doc');\n\n"""
               """DocFieldTextField(docRef, 'text')"""),
           ExampleLayout(
@@ -76,12 +78,12 @@ class WidgetsPage extends ConsumerWidget {
       SectionLayout(
         children: [
           Text('SwitchWidget', style: Theme.of(context).textTheme.titleLarge),
-          Text(
+          const Text(
               'SwitchWidget is a widget that displays a field from a Firestore document.'
               'It is a wrapper around the Switch widget. It is using the StreamProvider to listen'
               ' to changes in the document.'),
           Text('Example:', style: Theme.of(context).textTheme.titleMedium),
-          CodeLayout(
+          const CodeLayout(
               """final docRef = FirebaseFirestore.instance.collection('test_collection').doc('test_doc');\n\n"""
               """SwitchWidget(docRef, 'isGood')"""),
           ExampleLayout(
@@ -116,14 +118,14 @@ class WidgetsPage extends ConsumerWidget {
           /// );
           ///
 
-          Text(
+          const Text(
               'DocStreamWidget is a widget that builds itself based on the latest snapshot of interaction'
               ' with a Firestore document.'
               'It is using the StreamProvider to listen'
               ' to changes in the document.'),
 
           Text('Example:', style: Theme.of(context).textTheme.titleMedium),
-          CodeLayout(
+          const CodeLayout(
               """final docRef = FirebaseFirestore.instance.collection('test_collection').doc('test_doc');\n\n"""
               """DocStreamWidget(docRef, (context, doc) => Text(doc.data()['text']))"""),
           ExampleLayout(
@@ -138,13 +140,13 @@ class WidgetsPage extends ConsumerWidget {
         children: [
           Text('ColStreamWidget',
               style: Theme.of(context).textTheme.titleLarge),
-          Text(
+          const Text(
               'ColStreamWidget is a widget that builds itself based on the latest snapshot of interaction'
               ' with a Firestore collection.'
               'It is using the StreamProvider to listen'
               ' to changes in the collection.'),
           Text('Example:', style: Theme.of(context).textTheme.titleMedium),
-          CodeLayout("""ColStreamWidget(\n"""
+          const CodeLayout("""ColStreamWidget(\n"""
               """  colSP('test_collection'),\n"""
               """  (context, col, items) => ListView(\n"""
               """    shrinkWrap: true,\n"""
@@ -191,9 +193,9 @@ class WidgetsPage extends ConsumerWidget {
           /// ```
           ///
 
-          Text('NavigationRail widget with Riverpod state management'),
+          const Text('NavigationRail widget with Riverpod state management'),
           Text('Example:', style: Theme.of(context).textTheme.titleMedium),
-          CodeLayout("""final navRail = NavRail(\n"""
+          const CodeLayout("""final navRail = NavRail(\n"""
               """  destinations: {\n"""
               """   'Home': NavigationRailDestination(\n"""
               """    icon: const Icon(Icons.home),\n"""
@@ -228,12 +230,12 @@ class WidgetsPage extends ConsumerWidget {
       SectionLayout(
         children: [
           Text('CustomAppBar', style: Theme.of(context).textTheme.titleLarge),
-          Text(
+          const Text(
               'A custom app bar that can be used in place of the default [AppBar] widget.'
               'It can be used to add a [TabBar] to the [AppBar] or to add a [ThemeSwitch] and'
               '[CurrentUserAvatarExtended] to the [AppBar] actions.'),
           Text('Example:', style: Theme.of(context).textTheme.titleMedium),
-          CodeLayout("""CustomAppBar(\n"""
+          const CodeLayout("""CustomAppBar(\n"""
               """  tabs: ['Tab 1', 'Tab 2'],\n"""
               """  onTabSelected: (tab) {\n"""
               """    print(tab);\n"""
@@ -246,9 +248,9 @@ class WidgetsPage extends ConsumerWidget {
                     length: 2,
                     child: CustomAppBar(
                       leading: const Icon(Icons.menu),
-                      tabs: ['Tab 1!', 'Tab 2!'],
+                      tabs: const ['Tab 1!', 'Tab 2!'],
                       onTabSelected: (context, index, tab) {
-                        print(tab);
+                        print(tab); //TODO print in prod code ?
                       },
                       maxTabWidth: 25,
                     ))),

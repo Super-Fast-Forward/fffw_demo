@@ -1,8 +1,5 @@
-import 'package:auth/main.dart';
 import 'package:auth/providers.dart';
 import 'package:fffw_demo/core/_core_exports.dart';
-import 'package:theme/theme_mode.dart';
-import 'package:widgets/routing.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -16,7 +13,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  runApp(ProviderScope(child: MainApp()));
+  runApp(const ProviderScope(child: MainApp()));
 }
 
 class MainApp extends ConsumerWidget {
@@ -32,21 +29,23 @@ class MainApp extends ConsumerWidget {
         darkTheme: ThemeData.dark(),
         initialRoute: '/',
         onGenerateRoute: generateRoutes({
-          '/': (context, settings) => AboutPage(),
-          '/about': (context, settings) => AboutPage(),
-          '/auth': (context, settings) => AuthPage(),
+          '/': (context, settings) => const AboutPage(),
+          '/about': (context, settings) => const AboutPage(),
+          '/auth': (context, settings) => const AuthPage(),
           '/providers': (context, settings) => ProvidersPage(),
           '/data': (context, settings) => DataPage(),
-          '/widgets': (context, settings) => WidgetsPage(),
-          '/helpers': (context, settings) => HelpersPage(),
-          '/utils': (context, settings) => UtilsPage(),
-          '/sandbox': (context, settings) => SandboxPage(),
-          '/bankingApp': (context, settings) => SandboxPage(),
+          '/widgets': (context, settings) => const WidgetsPage(),
+          '/helpers': (context, settings) => const HelpersPage(),
+          '/utils': (context, settings) => const UtilsPage(),
+          '/sandbox': (context, settings) => const SandboxPage(),
+          '/bankingApp': (context, settings) => const SandboxPage(),
         }),
       );
 }
 
 class TheApp extends ConsumerWidget {
+  const TheApp({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isLoaded = ref.watch(authStateProvider);
@@ -54,16 +53,16 @@ class TheApp extends ConsumerWidget {
     if (!isLoaded.isLoaded
         //ref.watch(isInitiallySignedInProvider) == false
         ) {
-      print('loading...');
+      print('loading...'); //TODO print in prod code ?
       return Center(
         child: Container(
-          alignment: Alignment(0.0, 0.0),
-          child: CircularProgressIndicator(),
+          alignment: const Alignment(0.0, 0.0), //TODO look at
+          child: const CircularProgressIndicator(),
         ),
       );
     } else {
-      print('loaded');
-      return Scaffold(body: Text('hi')
+      print('loaded'); //TODO print in prod code ?
+      return const Scaffold(body: Text('hi')
           //   Navigator(
           // initialRoute: '/providers',
           // onGenerateRoute: (RouteSettings settings) {

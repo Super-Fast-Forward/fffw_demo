@@ -4,7 +4,7 @@ class PageLayout extends ConsumerWidget {
   final List<Widget> sections;
   final String title;
 
-  PageLayout({required this.sections, required this.title});
+  const PageLayout({super.key, required this.sections, required this.title});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -18,10 +18,10 @@ class PageLayout extends ConsumerWidget {
               child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: ConstrainedBox(
-                constraints: BoxConstraints(maxWidth: 600),
+                constraints: const BoxConstraints(maxWidth: 600),
                 child: ListView.separated(
                     itemBuilder: (context, index) => sections[index],
-                    separatorBuilder: (context, index) => Divider(),
+                    separatorBuilder: (context, index) => const Divider(),
                     itemCount: sections.length)),
           ))
         ]));

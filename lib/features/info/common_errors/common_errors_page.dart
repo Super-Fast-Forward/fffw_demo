@@ -1,6 +1,8 @@
 import 'package:fffw_demo/core/_core_exports.dart';
 
 class SandboxPage extends ConsumerWidget {
+  const SandboxPage({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return PageLayout(title: 'Sandbox', sections: [
@@ -8,7 +10,7 @@ class SandboxPage extends ConsumerWidget {
         children: [
           Text('Expanded/Flexible exceptions',
               style: Theme.of(context).textTheme.titleLarge),
-          Text(
+          const Text(
               "Expanded and Flexible widgets are great for building layouts, but they should be used "
               "with care. They are very powerful, but they can also be tricky to use correctly. "
               "If you are not careful, you can end up with a layout that is difficult to debug.\n"
@@ -18,7 +20,7 @@ class SandboxPage extends ConsumerWidget {
               "[Flex] must contain only [StatelessWidget]s or [StatefulWidget]s (not other\n"
               "kinds of widgets, like [RenderObjectWidget]s).\n"
               "https://www.youtube.com/watch?v=_rnZaagadyo"),
-          Text(
+          const Text(
               "══╡ EXCEPTION CAUGHT BY WIDGETS LIBRARY ╞═══════════════════════════════════════════════════════════\n"
               "The following assertion was thrown while looking for parent data.:\n"
               "Incorrect use of ParentDataWidget.\n"
@@ -38,13 +40,14 @@ class SandboxPage extends ConsumerWidget {
               "packages/flutter/src/widgets/framework.dart 6157:62                               attachRenderObject\n"
               "..."),
           Text('Solution:', style: Theme.of(context).textTheme.titleLarge),
-          Text(
+          const Text(
               '1. Try to look at the stack trace and understand widgets chain. This will tell you where the problem originated. \n'
               '2. Try to comment out offending/suspected widgets (from the chain). \n'
               '3. If it helped, look at the widgets and find where Flexible/Expanded was placed wrongly. \n'),
           Text('Code Example:', style: Theme.of(context).textTheme.titleMedium),
 
-          Text('It matters what you are trying to put inside Flexible/Expanded'
+          const Text(
+              'It matters what you are trying to put inside Flexible/Expanded'
               'For example, the following code will throw an exception:'),
 
 // Row(
@@ -53,7 +56,7 @@ class SandboxPage extends ConsumerWidget {
 //               ],
 //             )
 
-          CodeLayout("""Row()"""
+          const CodeLayout("""Row()"""
               """  children: ["""
               """    Expanded(child: Spacer()),"""
               """  ],"""
@@ -63,7 +66,7 @@ class SandboxPage extends ConsumerWidget {
       SectionLayout(children: [
         Text('Expanded/Flexible exceptions',
             style: Theme.of(context).textTheme.titleLarge),
-        Text(
+        const Text(
 //           Error: Cannot hit test a render box that has never been laid out.
 // dart-sdk/lib/_internal/js_dev_runtime/private/ddc_runtime/errors.dart 266:49      throw_
 // packages/flutter/src/rendering/box.dart 2490:11                                   <fn>

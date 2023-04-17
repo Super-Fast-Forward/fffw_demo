@@ -5,7 +5,7 @@ class BankingAppWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return PageLayout(title: 'BankingApp', sections: [
+    return const PageLayout(title: 'BankingApp', sections: [
       SectionLayout(children: []),
     ]);
   }
