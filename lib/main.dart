@@ -1,30 +1,15 @@
 import 'package:auth/main.dart';
 import 'package:auth/providers.dart';
-import 'package:fffw_demo/providers_page.dart';
-import 'package:fffw_demo/sandbox_page.dart';
-import 'package:fffw_demo/utils_page.dart';
-import 'package:fffw_demo/widgets_page.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:theme/config.dart';
+import 'package:fffw_demo/core/_core_exports.dart';
 import 'package:theme/theme_mode.dart';
 import 'package:widgets/routing.dart';
-
-import 'about_page.dart';
-import 'auth_page.dart';
-import 'data_page.dart';
 import 'firebase_options.dart';
-import 'generic_state_notifier.dart';
-import 'helpers_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   ThemeModeConfig.enableSave = true;
   ThemeModeConfig.defaultToLightTheme = true;
-
   AuthConfig.enableGoogleAuth = true;
 
   await Firebase.initializeApp(
@@ -56,6 +41,7 @@ class MainApp extends ConsumerWidget {
           '/helpers': (context, settings) => HelpersPage(),
           '/utils': (context, settings) => UtilsPage(),
           '/sandbox': (context, settings) => SandboxPage(),
+          '/bankingApp': (context, settings) => SandboxPage(),
         }),
       );
 }
@@ -101,3 +87,6 @@ class TheApp extends ConsumerWidget {
 
 final StreamProvider<User?> authStateChangesSP =
     StreamProvider<User?>((ref) => FirebaseAuth.instance.authStateChanges());
+
+
+//TODO we should get constant text from static class
