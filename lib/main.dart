@@ -1,6 +1,6 @@
 import 'package:auth/providers.dart';
 import 'package:fffw_demo/core/_core_exports.dart';
-import 'package:fffw_demo/features/example_apps/banking_app/banking_page.dart';
+import 'package:fffw_demo/features/banking_app/banking_page.dart';
 import 'firebase_options.dart';
 
 void main() async {
