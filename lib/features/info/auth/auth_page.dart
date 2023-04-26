@@ -62,6 +62,25 @@ class AuthPage extends ConsumerWidget {
             },
           ),
         )
+      ]),
+      SectionLayout(children: [
+        Text('Getting UID (User ID)',
+            style: Theme.of(context).textTheme.titleLarge),
+        Text('Once you logged in, you can access UID by kUSR!.uid'),
+        Text(
+          'Example:',
+          style: Theme.of(context).textTheme.titleMedium,
+        ),
+        CodeLayout(
+          """kUSR != null \n"""
+          """? Text('Your user ID is: \${kUSR!.uid}')\n"""
+          """ : Text('Not logged in');""",
+        ),
+        ExampleLayout(
+          child: kUSR != null
+              ? Text('Your user ID is: ${kUSR!.uid}')
+              : Text('Not logged in'),
+        )
       ])
     ]);
   }
