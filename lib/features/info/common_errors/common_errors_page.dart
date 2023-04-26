@@ -6,18 +6,9 @@ class SandboxPage extends ConsumerWidget {
     return PageLayout(title: 'Sandbox', sections: [
       SectionLayout(
         children: [
-          Text('Expanded/Flexible exceptions',
+          Text('What is sandbox?',
               style: Theme.of(context).textTheme.titleLarge),
-          Text(
-              "Expanded and Flexible widgets are great for building layouts, but they should be used "
-              "with care. They are very powerful, but they can also be tricky to use correctly. "
-              "If you are not careful, you can end up with a layout that is difficult to debug.\n"
-              "Things to remember when using Flexible and Expanded:\n"
-              "An [Expanded] widget must be a descendant of a [Row], [Column], or [Flex],\n"
-              "and the path from the [Expanded] widget to its enclosing [Row], [Column], or\n"
-              "[Flex] must contain only [StatelessWidget]s or [StatefulWidget]s (not other\n"
-              "kinds of widgets, like [RenderObjectWidget]s).\n"
-              "https://www.youtube.com/watch?v=_rnZaagadyo"),
+          Text("Sandbox is"),
           Text(
               "══╡ EXCEPTION CAUGHT BY WIDGETS LIBRARY ╞═══════════════════════════════════════════════════════════\n"
               "The following assertion was thrown while looking for parent data.:\n"
