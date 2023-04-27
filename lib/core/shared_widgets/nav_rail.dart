@@ -1,7 +1,9 @@
 import 'package:fffw_demo/core/_core_exports.dart';
 
 class CustomNavRail extends ConsumerWidget {
-  static final CustomNavRail _navRail = CustomNavRail(key: ValueKey('navRail'));
+  static final CustomNavRail _navRail = CustomNavRail(
+    key: const ValueKey('navRail'),
+  );
 
   final Map<String, NavigationRailDestination> destinations = {
     'about': const NavigationRailDestination(
@@ -46,7 +48,7 @@ class CustomNavRail extends ConsumerWidget {
         onDestinationSelected: (int index) {
           //print('index: $index, name: ${destinations.keys.elementAt(index)}');
           Navigator.of(context)
-              .pushNamed('/' + destinations.keys.elementAt(index));
+              .pushNamed('/${destinations.keys.elementAt(index)}');
         },
         destinations: destinations);
   }

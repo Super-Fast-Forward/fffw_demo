@@ -50,7 +50,6 @@
 import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fffw_demo/main.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -79,7 +78,7 @@ void main() async {
   //   print("Test catch exception");
   // };
 
-  var app = await Firebase.initializeApp();
+  var app = await Firebase.initializeApp(); //TODO Unused ?
   FirebaseFirestore.instance.settings = const Settings(
       host: 'localhost:8080', sslEnabled: false, persistenceEnabled: false);
 
@@ -102,31 +101,31 @@ void main() async {
 }
 
 Future<void> loginTest(WidgetTester tester) async {
-  print('starting login test');
+  print('starting login test'); //TODO print in prod code ?
   log('starting login test');
   //app.main();
-  await tester.pumpWidget(ProviderScope(child: TheApp()));
+  await tester.pumpWidget(const ProviderScope(child: TheApp()));
 
-  print('Firebase APP is: ${Firebase.app().name}');
+  print('Firebase APP is: ${Firebase.app().name}'); //TODO print in prod code ?
 
-  print('pumpAndSettle...');
+  print('pumpAndSettle...'); //TODO print in prod code ?
 
   await tester.pumpAndSettle();
 
-  print('check welcome back');
+  print('check welcome back'); //TODO print in prod code ?
   expect(find.text('Welcome back'), findsOneWidget);
 
-  print('enter email');
+  print('enter email'); //TODO print in prod code ?
   await tester.enterText(
-      find.byKey(Key('email_field')), 'auto_admin@amlcloud.io');
-  print('enter password');
-  await tester.enterText(find.byKey(Key('password_field')), 'qwer1234');
-  await tester.tap(find.byKey(Key('login_btn')));
+      find.byKey(const Key('email_field')), 'auto_admin@amlcloud.io');
+  print('enter password'); //TODO print in prod code ?
+  await tester.enterText(find.byKey(const Key('password_field')), 'qwer1234');
+  await tester.tap(find.byKey(const Key('login_btn')));
 
   await tester.pumpAndSettle(const Duration(seconds: 1));
 
   log("User profile expect!");
-  expect(find.byKey(Key('edit_user_profile')), findsOneWidget);
+  expect(find.byKey(const Key('edit_user_profile')), findsOneWidget);
 
-  print('end of login test');
+  print('end of login test'); //TODO print in prod code ?
 }

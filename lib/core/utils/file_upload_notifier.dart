@@ -23,15 +23,10 @@ class FileUploadNotifier extends StateNotifier<TaskState?> {
       // print('upload state $event');
       state = event.state;
     }, onError: (error) {
-      print('upload error $error');
+      print('upload error $error'); //TODO print in prod code ?
     }, onDone: () {
       // print('upload done!');
       if (_tickerSubscription != null) _tickerSubscription!.cancel();
     }, cancelOnError: true);
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
   }
 }

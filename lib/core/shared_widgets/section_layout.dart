@@ -3,7 +3,7 @@ import 'package:fffw_demo/core/_core_exports.dart';
 class SectionLayout extends ConsumerWidget {
   final List<Widget> children;
 
-  SectionLayout({required this.children});
+  const SectionLayout({super.key, required this.children});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
