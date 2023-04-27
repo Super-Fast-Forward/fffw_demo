@@ -28,6 +28,6 @@ export 'package:widgets/doc_field_text_edit.dart';
 export 'package:widgets/doc_field_text_field.dart';
 export 'package:widgets/doc_stream_widget.dart';
 export 'package:widgets/nav_rail.dart';
-export 'package:widgets/switch.dart';
 export 'package:widgets/link.dart';
 export 'package:widgets/routing.dart';
+export 'package:widgets/doc_field_drop_down.dart';
