@@ -54,6 +54,8 @@ dependencies:
 
 
 # dependency_overrides:
+#   widgets:
+#     path: ../flutter_firebase_framework/widgets
 #   common:
 #     path: ../flutter_firebase_framework/common
 #   theme:
@@ -62,8 +64,6 @@ dependencies:
 #     path: ../flutter_firebase_framework/providers
 #   auth:
 #     path: ../flutter_firebase_framework/auth
-#   widgets:
-#     path: ../flutter_firebase_framework/widgets
 
 
 dev_dependencies:
