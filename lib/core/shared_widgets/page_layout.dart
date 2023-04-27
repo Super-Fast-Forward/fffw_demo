@@ -10,7 +10,10 @@ class PageLayout extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
         appBar: CustomAppBar(
-          title: Text(title),
+          title: SizedBox(
+            width: 500,
+            child: Text(title),
+          ),
         ),
         body: Row(children: [
           CustomNavRail.getNavRail(),

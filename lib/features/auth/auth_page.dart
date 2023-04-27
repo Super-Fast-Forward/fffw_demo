@@ -11,17 +11,30 @@ class AuthPage extends ConsumerWidget {
       sections: [
         SectionLayout(
           children: [
-            Text('Login Screen', style: Theme.of(context).textTheme.titleLarge),
-            const Text(
-              'This is the main widget for the login screen. '
-              'It will display the login buttons on the left and the main title on the right.',
+            SizedBox(
+              width: ConstantValues.TEXT_WRAPPING_WIDTH,
+              child: Text('Login Screen',
+                  style: Theme.of(context).textTheme.titleLarge),
             ),
-            Text(
-              'Example:',
-              style: Theme.of(context).textTheme.titleMedium,
+            const SizedBox(
+              width: ConstantValues.TEXT_WRAPPING_WIDTH,
+              child: Text(
+                'This is the main widget for the login screen. '
+                'It will display the login buttons on the left and the main title on the right.',
+              ),
             ),
-            const CodeLayout(
-              """LoginScreen('Login', 'Login Buttons', {'Google': true, 'Facebook': true, 'Twitter': true});""",
+            SizedBox(
+              width: ConstantValues.TEXT_WRAPPING_WIDTH,
+              child: Text(
+                'Example:',
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+            ),
+            const SizedBox(
+              width: ConstantValues.TEXT_WRAPPING_WIDTH,
+              child: CodeLayout(
+                """LoginScreen('Login', 'Login Buttons', {'Google': true, 'Facebook': true, 'Twitter': true});""",
+              ),
             ),
             ExampleLayout(
               child: LoginScreen(
@@ -31,10 +44,16 @@ class AuthPage extends ConsumerWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: const [
-                        Text(
-                          'Logo',
+                        SizedBox(
+                          width: ConstantValues.TEXT_WRAPPING_WIDTH,
+                          child: Text(
+                            'Logo',
+                          ),
                         ),
-                        Text('About The App'),
+                        SizedBox(
+                          width: ConstantValues.TEXT_WRAPPING_WIDTH,
+                          child: Text('About The App'),
+                        ),
                       ],
                     ),
                   ),
@@ -51,25 +70,37 @@ class AuthPage extends ConsumerWidget {
         ),
         SectionLayout(
           children: [
-            Text(
-              'Login Buttons',
-              style: Theme.of(context).textTheme.titleLarge,
+            SizedBox(
+              width: ConstantValues.TEXT_WRAPPING_WIDTH,
+              child: Text(
+                'Login Buttons',
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
             ),
-            const Text(
-              'LoginButtonsWidget is a widget that displays the login buttons. '
-              'Each button is a [ElevatedButton] that calls the appropriate login function. '
-              'The login functions are defined in the [LoginConfig] class.',
+            const SizedBox(
+              width: ConstantValues.TEXT_WRAPPING_WIDTH,
+              child: Text(
+                'LoginButtonsWidget is a widget that displays the login buttons. '
+                'Each button is a [ElevatedButton] that calls the appropriate login function. '
+                'The login functions are defined in the [LoginConfig] class.',
+              ),
             ),
-            Text(
-              'Example:',
-              style: Theme.of(context).textTheme.titleMedium,
+            SizedBox(
+              width: ConstantValues.TEXT_WRAPPING_WIDTH,
+              child: Text(
+                'Example:',
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
             ),
-            const CodeLayout(
-              """LoginButtonsWidget("""
-              """screenTitle: 'Login', """
-              """onLoginAnonymousButtonPressed: () {"""
-              """   print('Login Anonymously');"""
-              """});""",
+            const SizedBox(
+              width: ConstantValues.TEXT_WRAPPING_WIDTH,
+              child: CodeLayout(
+                """LoginButtonsWidget("""
+                """screenTitle: 'Login', """
+                """onLoginAnonymousButtonPressed: () {"""
+                """   print('Login Anonymously');"""
+                """});""",
+              ),
             ),
             ExampleLayout(
               child: LoginButtonsWidget(
