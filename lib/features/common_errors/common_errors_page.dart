@@ -12,8 +12,8 @@ class SandboxPage extends ConsumerWidget {
           children: [
             Text('What is sandbox?',
                 style: Theme.of(context).textTheme.titleLarge),
-            Text("Sandbox is"),
-            Text(
+            const Text("Sandbox is"),
+            const Text(
               "══╡ EXCEPTION CAUGHT BY WIDGETS LIBRARY ╞═══════════════════════════════════════════════════════════\n"
               "The following assertion was thrown while looking for parent data.:\n"
               "Incorrect use of ParentDataWidget.\n"

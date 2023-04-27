@@ -31,3 +31,4 @@ export 'package:widgets/nav_rail.dart';
 export 'package:widgets/link.dart';
 export 'package:widgets/routing.dart';
 export 'package:widgets/doc_field_drop_down.dart';
+export 'package:widgets/switch.dart';
