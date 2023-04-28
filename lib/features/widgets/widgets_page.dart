@@ -1,4 +1,7 @@
 import 'package:fffw_demo/core/_core_exports.dart';
+import 'package:widgets/doc_switch.dart';
+
+SNP<String?> currency = snp('AUD');
 
 class WidgetsPage extends ConsumerWidget {
   const WidgetsPage({super.key});
@@ -104,7 +107,7 @@ class WidgetsPage extends ConsumerWidget {
               """SwitchWidget(docRef, 'isGood')""",
             ),
             ExampleLayout(
-              child: SwitchWidget(
+              child: DocSwitch(
                 FirebaseFirestore.instance
                     .collection('test_collection')
                     .doc('test_doc'),
@@ -294,6 +297,52 @@ class WidgetsPage extends ConsumerWidget {
                 ),
               ),
             ),
+          ],
+        ),
+        SectionLayout(
+          children: [
+            Text('DocFieldDropDown3',
+                style: Theme.of(context).textTheme.titleLarge),
+            Text(
+                """DocFieldDropDown3 - a dropdown that is populated from a collection stream\n"""
+                """- docRef - the document reference\n"""
+                """- field - the field to update\n"""
+                """- colStreamProvider - the collection stream provider\n"""
+                """- builder - the builder function to create the dropdown items\n"""
+                """- valueNP - the value notifier provider to update\n"""
+                """- onChanged - the function to call when the value changes\n"""
+                """- enabled - whether the dropdown is enabled\n"""),
+            Text('Example:', style: Theme.of(context).textTheme.titleMedium),
+            CodeLayout("""DocFieldDropDown3(\n"""
+                """  FirebaseFirestore.instance.collection('test_collection').doc('test_doc'),\n"""
+                """  'test_field',\n"""
+                """  ['AUD', 'USD', 'EUR']\n"""
+                """      .map((e) => DropdownMenuItem(child: Text(e), value: e))\n"""
+                """      .toList(),\n"""
+                """  enabled: true,\n"""
+                """);\n"""),
+            ExampleLayout(
+                child: Row(
+              children: [
+                DocFieldDropDown3(
+                  key: const Key('DocFieldDropDown3'),
+                  FirebaseFirestore.instance
+                      .collection('test_collection')
+                      .doc('test_doc'),
+                  'test_field',
+                  ['AUD', 'USD', 'EUR']
+                      .map((e) => DropdownMenuItem(child: Text(e), value: e))
+                      .toList(),
+                  valueNP: currency,
+                  enabled: true,
+                ),
+                DocFieldText(
+                    FirebaseFirestore.instance
+                        .collection('test_collection')
+                        .doc('test_doc'),
+                    'test_field')
+              ],
+            ))
           ],
         ),
       ],
