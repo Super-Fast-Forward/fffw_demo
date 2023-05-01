@@ -71,7 +71,9 @@ Widget build(BuildContext context, WidgetRef ref) {
                       docSP('test_collection/test_doc'),
                     )
                     .when(
-                      data: (doc) => Text(doc.data()?['text'] ?? 'null'),
+                      data: (doc) {
+                        return Text(doc.data()?['text'] ?? 'null');
+                      },
                       loading: () => const CircularProgressIndicator(),
                       error: (err, stack) => Text(
                         err.toString(),
