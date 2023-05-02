@@ -1,6 +1,6 @@
 # flutter_firebase_auth_test_app
 
-Hosted at: https://flutter-firebase-auth-a9bee.web.app
+Hosted at: https://fffw.dev/
 
 This is a simple webapp to test https://github.com/amlcloud/flutter-firebase-auth.
 
