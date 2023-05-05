@@ -48,50 +48,29 @@ class MainApp extends ConsumerWidget {
       );
 }
 
-class TheApp extends ConsumerWidget {
-  const TheApp({super.key});
+// class TheApp extends ConsumerWidget {
+//   const TheApp({super.key});
 
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final isLoaded = ref.watch(authStateProvider);
+//   @override
+//   Widget build(BuildContext context, WidgetRef ref) {
+//     final isLoaded = ref.watch(authStateProvider);
 
-    if (!isLoaded.isLoaded
-        //ref.watch(isInitiallySignedInProvider) == false
-        ) {
-      print('loading...'); //TODO print in prod code ?
-      return Center(
-        child: Container(
-          alignment: const Alignment(0.0, 0.0), //TODO look at
-          child: const CircularProgressIndicator(),
-        ),
-      );
-    } else {
-      print('loaded'); //TODO print in prod code ?
-      return const Scaffold(body: Text('hi')
-          //   Navigator(
-          // initialRoute: '/providers',
-          // onGenerateRoute: (RouteSettings settings) {
-          //   // print('onGenerateRoute: ${settings}');
-          //   if (settings.name == '/' || settings.name == '/providers') {
-          //     return PageRouteBuilder(
-          //       pageBuilder: (_, __, ___) => ProvidersPage(),
-          //     );
-          //   } else if (settings.name == '/widgets') {
-          //     return PageRouteBuilder(pageBuilder: (_, __, ___) => WidgetsPage());
-          //   } else if (settings.name == '/auth') {
-          //     return PageRouteBuilder(pageBuilder: (_, __, ___) => AuthPage());
-          //   } else {
-          //     throw 'no page to show';
-          //   }
-          // },
-          );
-    }
-  }
-}
+//     if (!isLoaded.isLoaded) {
+//       print('loading...'); //TODO print in prod code ?
+//       return Center(
+//         child: Container(
+//           alignment: const Alignment(0.0, 0.0), //TODO look at
+//           child: const CircularProgressIndicator(),
+//         ),
+//       );
+//     } else {
+//       print('loaded'); //TODO print in prod code ?
+//       return const Scaffold(body: Text('hi')
+//           );
+//     }
+//   }
+// }
 
-final StreamProvider<User?> authStateChangesSP = StreamProvider<User?>(
-  (ref) => FirebaseAuth.instance.authStateChanges(),
-);
-
-
-//TODO we should get constant text from static class
+// final StreamProvider<User?> authStateChangesSP = StreamProvider<User?>(
+//   (ref) => FirebaseAuth.instance.authStateChanges(),
+// );

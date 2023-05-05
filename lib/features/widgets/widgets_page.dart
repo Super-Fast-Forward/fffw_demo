@@ -1,4 +1,7 @@
 import 'package:fffw_demo/core/_core_exports.dart';
+import 'package:widgets/col_browser.dart';
+import 'package:widgets/copy_to_clipboard_widget.dart';
+import 'package:widgets/doc_print.dart';
 import 'package:widgets/doc_switch.dart';
 
 SNP<String?> currency = snp('AUD');
@@ -247,6 +250,7 @@ class WidgetsPage extends ConsumerWidget {
               child: SizedBox(
                 height: 500,
                 child: NavRail(
+                  key: ValueKey('navRail example'),
                   destinations: const {
                     'Home': NavigationRailDestination(
                       icon: Icon(Icons.home),
@@ -345,6 +349,99 @@ class WidgetsPage extends ConsumerWidget {
             ))
           ],
         ),
+        _buildColBrowserWidget(context),
+        _copyToClipboardWidget(context)
+      ],
+    );
+  }
+
+  _buildColBrowserWidget(BuildContext context) {
+    return SectionLayout(
+      children: [
+        Text('ColBrowser', style: Theme.of(context).textTheme.titleLarge),
+
+        ///
+        /// A widget that displays a list of items from a collection and a details view
+        /// of the selected item.
+        ///
+        /// The [ColBrowser] widget is a [ConsumerWidget] that takes a [colStreamProvider]
+        /// and a [builder] function. The [colStreamProvider] is used to get a stream of
+        /// the collection to be displayed. The [builder] function is called with the
+        /// [context] and the [listWidget] and [itemDetails] widgets. The [listWidget]
+        /// is a [ColStreamWidget] that displays the list of items from the collection.
+        /// The [itemDetails] widget is a [ConsumerWidget] that displays the details of
+        /// the selected item.
+        ///
+
+        Text(
+            """A widget that displays a list of items from a collection and a details view\n"""
+            """of the selected item.\n"""
+            """\n"""
+            """The [ColBrowser] widget is a [ConsumerWidget] that takes a [colStreamProvider]\n"""
+            """and a [builder] function. The [colStreamProvider] is used to get a stream of\n"""
+            """the collection to be displayed. The [builder] function is called with the\n"""
+            """[context] and the [listWidget] and [itemDetails] widgets. The [listWidget]\n"""
+            """is a [ColStreamWidget] that displays the list of items from the collection.\n"""
+            """The [itemDetails] widget is a [ConsumerWidget] that displays the details of\n"""
+            """the selected item.\n"""),
+        Text('Example:', style: Theme.of(context).textTheme.titleMedium),
+        CodeLayout("""DocFieldDropDown3(\n"""
+            """  FirebaseFirestore.instance.collection('test_collection').doc('test_doc'),\n"""
+            """  'test_field',\n"""
+            """  ['AUD', 'USD', 'EUR']\n"""
+            """      .map((e) => DropdownMenuItem(child: Text(e), value: e))\n"""
+            """      .toList(),\n"""
+            """  enabled: true,\n"""
+            """);\n"""),
+        ExampleLayout(
+            child: ColBrowser(
+                colSP('test_collection'),
+                (context, listWidget, itemDetails) => Row(
+                      children: [
+                        Expanded(
+                            child: Column(
+                          children: [
+                            Text('Items:'),
+                            listWidget,
+                          ],
+                        )),
+                        Expanded(child: itemDetails),
+                      ],
+                    ),
+                (context, docRef) =>
+                    Card(child: ListTile(title: Text(docRef.id))),
+                (context, docRef) => Column(
+                      children: [
+                        Text('Details:'),
+                        DocPrintWidget(docRef),
+                      ],
+                    ))),
+      ],
+    );
+  }
+
+  Widget _copyToClipboardWidget(BuildContext context) {
+    return SectionLayout(
+      children: [
+        Text('CopyToClipboardWidget',
+            style: Theme.of(context).textTheme.titleLarge),
+        Text("""A widget that copies the text to the clipboard when tapped.\n"""
+            """\n"""
+            """The [CopyToClipboard] widget is a [ConsumerWidget] that takes a [text]\n"""
+            """and a [builder] function. The [text] is the text to be copied to the\n"""
+            """clipboard. The [builder] function is called with the [context] and the\n"""
+            """[child] widget. The [child] widget is a [GestureDetector] that copies the\n"""
+            """[text] to the clipboard when tapped.\n"""),
+        Text('Example:', style: Theme.of(context).textTheme.titleMedium),
+        CodeLayout("""CopyToClipboardWidget(\n"""
+            """  text: 'Text to copy',\n"""
+            """  child: Text('Tap to copy')\n"""
+            """);\n"""),
+        ExampleLayout(
+            child: CopyToClipboardWidget(
+          text: 'Text to copy',
+          child: Text('Tap to copy'),
+        )),
       ],
     );
   }
