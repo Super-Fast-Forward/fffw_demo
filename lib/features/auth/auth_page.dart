@@ -1,4 +1,5 @@
 import 'package:auth/login_screen.dart';
+import 'package:auth/providers.dart';
 import 'package:fffw_demo/core/_core_exports.dart';
 
 class AuthPage extends ConsumerWidget {
@@ -81,7 +82,40 @@ class AuthPage extends ConsumerWidget {
             ),
           ],
         ),
+        _buildAuthProvidersSection(context, ref),
       ],
     );
   }
+
+  Widget _buildAuthProvidersSection(BuildContext context, WidgetRef ref) =>
+      SectionLayout(
+        children: [
+          Text(
+            'authStateProvider',
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
+          const Text(
+            'To access the current user, use the authStateProvider:'
+            'You can get the current state of the user by calling ref.watch(authStateProvider).user.\n\n'
+            'Example:',
+          ),
+          const CodeLayout(
+            """Text('Current User: '),\n"""
+            """ref.watch(authStateProvider).user == null\n"""
+            """  ? Text('Not signed in')\n"""
+            """  : Text('Singed in as: \${ref.watch(authStateProvider).user?.displayName ?? "Anonymous"}'),""",
+          ),
+          Column(
+            children: [
+              Text('Current User: '),
+              !ref.watch(authStateProvider).isLoaded
+                  ? Text('Loading...')
+                  : ref.watch(authStateProvider).user == null
+                      ? Text('Not signed in')
+                      : Text(
+                          'Singed in as: ${ref.watch(authStateProvider).user?.displayName ?? "Anonymous"}'),
+            ],
+          )
+        ],
+      );
 }

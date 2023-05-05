@@ -1,3 +1,4 @@
+import 'package:auth/providers.dart';
 import 'package:fffw_demo/core/_core_exports.dart';
 
 class ProvidersPage extends ConsumerWidget {
@@ -76,20 +77,6 @@ Widget build(BuildContext context, WidgetRef ref) {
             )
           ],
         ),
-        SectionLayout(
-          children: [
-            Text(
-              'authStateProvider',
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-            const Text(''),
-            const CodeLayout(
-              """
-
-  """,
-            )
-          ],
-        )
       ],
     );
   }

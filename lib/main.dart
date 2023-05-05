@@ -47,30 +47,3 @@ class MainApp extends ConsumerWidget {
         ),
       );
 }
-
-// class TheApp extends ConsumerWidget {
-//   const TheApp({super.key});
-
-//   @override
-//   Widget build(BuildContext context, WidgetRef ref) {
-//     final isLoaded = ref.watch(authStateProvider);
-
-//     if (!isLoaded.isLoaded) {
-//       print('loading...'); //TODO print in prod code ?
-//       return Center(
-//         child: Container(
-//           alignment: const Alignment(0.0, 0.0), //TODO look at
-//           child: const CircularProgressIndicator(),
-//         ),
-//       );
-//     } else {
-//       print('loaded'); //TODO print in prod code ?
-//       return const Scaffold(body: Text('hi')
-//           );
-//     }
-//   }
-// }
-
-// final StreamProvider<User?> authStateChangesSP = StreamProvider<User?>(
-//   (ref) => FirebaseAuth.instance.authStateChanges(),
-// );
