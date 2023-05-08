@@ -1,7 +1,7 @@
 name: fffw_demo
 description: Flutter Firebase Framework Demo App
 version: 0.0.1
-homepage:
+#homepage:
 publish_to: none
 
 environment:
