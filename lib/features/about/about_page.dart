@@ -19,7 +19,7 @@ class AboutPage extends ConsumerWidget {
               'It is a collection of widgets, providers and helpers to make development faster and easier.'
               'It is using Riverpod for state management and Firestore for data storage.',
             ),
-            Image.asset('./images/fffw.png'),
+            Image.asset('assets/images/fffw.png'),
             Text(
               'Codebase',
               style: Theme.of(context).textTheme.titleMedium,
