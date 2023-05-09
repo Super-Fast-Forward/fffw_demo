@@ -1,7 +1,7 @@
 import 'package:fffw_demo/core/_core_exports.dart';
 
-class SandboxPage extends ConsumerWidget {
-  const SandboxPage({super.key});
+class CommonErrorsPage extends ConsumerWidget {
+  const CommonErrorsPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

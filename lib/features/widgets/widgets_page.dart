@@ -1,8 +1,6 @@
 import 'package:fffw_demo/core/_core_exports.dart';
-import 'package:widgets/col_browser.dart';
 import 'package:widgets/copy_to_clipboard_widget.dart';
 import 'package:widgets/doc_print.dart';
-import 'package:widgets/doc_switch.dart';
 
 SNP<String?> currency = snp('AUD');
 
