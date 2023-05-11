@@ -10,8 +10,11 @@ class PageLayout extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
         appBar: CustomAppBar(
-          title: Text(title),
-        ),
+            title: Text(title),
+            settingsButton: IconButton(
+              icon: const Icon(Icons.settings),
+              onPressed: () => Navigator.pushNamed(context, '/settings'),
+            )),
         body: Row(children: [
           CustomNavRail.getNavRail(),
           Expanded(

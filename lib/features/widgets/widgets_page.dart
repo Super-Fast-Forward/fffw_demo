@@ -1,4 +1,6 @@
+import 'package:common/dialogs.dart';
 import 'package:fffw_demo/core/_core_exports.dart';
+import 'package:widgets/col_browser.dart';
 import 'package:widgets/copy_to_clipboard_widget.dart';
 import 'package:widgets/doc_print.dart';
 
@@ -295,6 +297,19 @@ class WidgetsPage extends ConsumerWidget {
                       print(tab); //TODO print in prod code ?
                     },
                     maxTabWidth: 25,
+                    showSettingsButton: true,
+                    settingsButton: IconButton(
+                        icon: const Icon(Icons.settings),
+                        onPressed: () {
+                          showCustomDialog(
+                              context, 'Settings', Text('Settings'), [
+                            ElevatedButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: const Text('Close'))
+                          ]);
+                        }),
                   ),
                 ),
               ),
