@@ -15,10 +15,10 @@ dependencies:
 
   firebase_core: ^2.3.0
   cloud_firestore: ^4.0.1
-  firebase_auth_web: 5.1.3
-  firebase_auth: 4.1.5
+  firebase_auth: ^4.6.0
+  firebase_auth_web: 5.5.0
   firebase_storage: ^11.0.1
-  flutter_riverpod: ^1.0.4
+  flutter_riverpod: ^2.3.6
   gap: ^2.0.0
   flutter_svg: ^1.1.6
   flutter_highlighter: ^0.1.1
@@ -49,8 +49,6 @@ dependencies:
       path: theme
   url_launcher: ^6.1.10
 
-
-
 # dependency_overrides:
 #   widgets:
 #     path: ../flutter_firebase_framework/widgets
@@ -62,6 +60,7 @@ dependencies:
 #     path: ../flutter_firebase_framework/providers
 #   auth:
 #     path: ../flutter_firebase_framework/auth
+
 
 
 dev_dependencies:

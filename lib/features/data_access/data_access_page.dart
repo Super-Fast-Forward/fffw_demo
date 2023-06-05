@@ -153,7 +153,7 @@ Widget build(BuildContext context, WidgetRef ref) {
             'limit the number of documents that are fetched.\n\n',
           ),
           const CodeLayout(
-              """final AutoDisposeStreamProviderFamily<QuerySnapshot<Map<String, dynamic>>, String> colSP"""),
+              """final AutoDisposeStreamProviderFamily<QuerySnapshot<Map<String, dynamic>>, String> colSPfiltered2"""),
           const Text('Here is an example:\n'),
           const CodeLayout(
             """ 
@@ -213,7 +213,12 @@ Widget build(BuildContext context, WidgetRef ref) {
                       loading: () => const CircularProgressIndicator(),
                       error: (err, stack) => Text(err.toString()),
                     )),
-          ])
+          ]),
+          const Text(
+            'In the above example, the collection stream provider will only return the documents '
+            'for which the following queries are true:\n'
+            'type == "shared" and isStartup == true\n\n',
+          ),
         ]),
         SectionLayout(
           children: [

@@ -24,7 +24,6 @@ export 'package:providers/generic.dart';
 export 'package:widgets/col_stream_widget.dart';
 export 'package:widgets/custom_app_bar.dart';
 export 'package:widgets/doc_field_text.dart';
-export 'package:widgets/doc_field_text_edit.dart';
 export 'package:widgets/doc_field_text_field.dart';
 export 'package:widgets/doc_stream_widget.dart';
 export 'package:widgets/nav_rail.dart';

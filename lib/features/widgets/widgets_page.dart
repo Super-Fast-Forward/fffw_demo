@@ -59,7 +59,7 @@ class WidgetsPage extends ConsumerWidget {
               """DocFieldTextEdit(docRef, 'text')""",
             ),
             ExampleLayout(
-              child: DocFieldTextEdit(
+              child: DocFieldTextField(
                 FirebaseFirestore.instance
                     .collection('test_collection')
                     .doc('test_doc'),
@@ -91,7 +91,6 @@ class WidgetsPage extends ConsumerWidget {
                     .collection('test_collection')
                     .doc('test_doc'),
                 'text',
-                10,
               ),
             ),
           ],
@@ -170,10 +169,12 @@ class WidgetsPage extends ConsumerWidget {
               style: Theme.of(context).textTheme.titleLarge,
             ),
             const Text(
-              'ColStreamWidget is a widget that builds itself based on the latest snapshot of interaction'
-              ' with a Firestore collection.'
+              'ColStreamWidget is a widget that builds itself based on the latest snapshot of a Firestore collection.'
               'It is using the StreamProvider to listen'
-              ' to changes in the collection.',
+              ' to changes in the collection.\n\n'
+              'It has two builders, one for the collection and one for the items in the collection. '
+              'The collection builder builds the widget that will contain the items. '
+              'The items builder builds the widget for each item in the collection that will be in the items` container. ',
             ),
             Text('Example:', style: Theme.of(context).textTheme.titleMedium),
             const CodeLayout(
@@ -185,6 +186,11 @@ class WidgetsPage extends ConsumerWidget {
               """  ),\n"""
               """  (c, e) => Text(e.data()['text']\n"""
               """ ),\n""",
+            ),
+            const Text(
+              'In the above example, the collection builder builds a ListView that will contain the items.'
+              'The items builder builds a Text widget for each item in the collection.'
+              'Therefore, in the end, we will have a ListView with Text widgets for each item in the collection:',
             ),
             ExampleLayout(
               child: ColStreamWidget<Widget>(
